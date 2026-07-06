@@ -4,7 +4,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: "Profil", href: "#profil" },
+  { label: "Beranda", href: "#profil" },
   { label: "Perangkat", href: "#perangkat" },
   { label: "Peta", href: "#peta" },
   { label: "UMKM", href: "#umkm" },

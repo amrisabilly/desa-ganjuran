@@ -1,7 +1,9 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { umkmProducts } from "@/data/umkm";
 
 
 
@@ -9,13 +11,6 @@ type VillageRole = {
   title: string;
   name: string;
   description: string;
-};
-
-type Product = {
-  name: string;
-  owner: string;
-  description: string;
-  accent: string;
 };
 
 type QuickStat = {
@@ -41,29 +36,7 @@ const villageRoles: VillageRole[] = [
   },
 ];
 
-const products: Product[] = [
-  {
-    name: "Anyaman Bambu Tradisional",
-    owner: "Ibu Suminah",
-    description: "Kerajinan rumah tangga berbahan bambu dengan motif lokal.",
-    accent:
-      "radial-gradient(circle at 20% 20%, #f6e8b6 0%, #c89d5c 35%, #7a5a2c 100%)",
-  },
-  {
-    name: "Coklat Jahe Organik",
-    owner: "Pak Joko",
-    description: "Olahan coklat rempah khas dusun tanpa pengawet.",
-    accent:
-      "radial-gradient(circle at 25% 25%, #e6c08f 0%, #8a5c2f 45%, #3f2a1a 100%)",
-  },
-  {
-    name: "Batik Tulis Cagakrejo",
-    owner: "Ibu Narti",
-    description: "Batik premium bermotif sawah dan aliran sungai desa.",
-    accent:
-      "radial-gradient(circle at 30% 20%, #9ac5b0 0%, #456f5a 45%, #243f34 100%)",
-  },
-];
+const featuredProducts = umkmProducts.slice(0, 3);
 
 const quickStats: QuickStat[] = [
   { label: "Kepala Keluarga", value: "312" },
@@ -76,7 +49,7 @@ function ProductImage({ style, label }: { style: CSSProperties; label: string })
   return (
     <div
       aria-hidden="true"
-      className="h-32 w-full rounded-xl border border-white/35 shadow-inner"
+      className="h-36 w-full rounded-2xl border border-white/35 shadow-inner"
       style={style}
       title={label}
     />
@@ -106,6 +79,8 @@ function SectionHeading({
 }
 
 export default function Home() {
+  const idrCurrency = new Intl.NumberFormat("id-ID");
+
   return (
     <div className="min-h-screen bg-[#ece9df] text-[#143122]">
       <Navbar />
@@ -113,15 +88,15 @@ export default function Home() {
       <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#1b4c35] px-4 pb-28 pt-4 text-white  sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-36">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,#163d2b_0%,#234e36_58%,#102619_100%)]" />
         <Image
-          src="/bg_header"
+          src="/bg2.jpg"
           alt="Lanskap Dusun Ganjuran"
           fill
           priority
-          sizes="100vw"
-          className="pointer-events-none absolute inset-0 object-cover object-center opacity-60"
+          sizes="50vw"
+          className="pointer-events-none absolute inset-0 object-cover object-center opacity-80"
         />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(191,255,169,.2),transparent_45%),radial-gradient(circle_at_75%_35%,rgba(255,252,199,.16),transparent_40%),linear-gradient(to_bottom,rgba(9,27,19,.35),rgba(9,27,19,.65))]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.08)_1px,transparent_1px)] bg-size-[28px_28px] opacity-20" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[length:28px_28px] opacity-20" />
 
         <section
           id="profil"
@@ -195,11 +170,11 @@ export default function Home() {
               caption="Struktur kepemimpinan dan penggerak kegiatan masyarakat Dusun Ganjuran."
             />
           </div>
-          <div className="grid gap-5 md:grid-cols-3 lg:gap-6">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {villageRoles.map((role) => (
               <article
                 key={role.title}
-                className="group rounded-3xl border border-[#d7dccf] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
+                className="group flex h-full flex-col rounded-3xl border border-[#d7dccf] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#9cc4ac] hover:shadow-md"
               >
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1f573c] text-xs font-bold text-white transition group-hover:bg-[#173d2c]">
                   {role.title
@@ -210,11 +185,11 @@ export default function Home() {
                 </div>
                 <h3 className="text-base font-semibold text-[#21442f]">{role.title}</h3>
                 <p className="mt-1 text-sm font-medium text-[#38704e]">{role.name}</p>
-                <p className="mt-3 min-h-14 text-sm leading-relaxed text-[#4b5e50]">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[#4b5e50]">
                   {role.description}
                 </p>
                 <a
-                  className="mt-4 inline-flex rounded-full border border-[#1f573c] px-3 py-1 text-xs font-semibold text-[#1f573c] transition hover:bg-[#1f573c] hover:text-white"
+                  className="mt-4 inline-flex w-fit rounded-full border border-[#1f573c] px-3 py-1 text-xs font-semibold text-[#1f573c] transition hover:bg-[#1f573c] hover:text-white"
                   href="#kontak"
                 >
                   Hubungi
@@ -231,15 +206,56 @@ export default function Home() {
               caption="Visualisasi wilayah, titik layanan publik, dan pusat aktivitas warga."
             />
           </div>
-          <div className="relative overflow-hidden rounded-3xl border border-[#d7dccf] bg-white p-4 shadow-sm sm:p-5">
-            <div className="relative h-[50em] overflow-hidden rounded-2xl sm:h-80">
-              <img
-                src="/gambar_peta.jpeg"
-                alt="Peta Dusun Ganjuran"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover object-center"
-              />
+          <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+            <div className="relative overflow-hidden rounded-3xl border border-[#d7dccf] bg-white shadow-sm lg:col-span-2">
+              <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9]">
+                <Image
+                  src="/gambar_peta.jpeg"
+                  alt="Peta Dusun Ganjuran"
+                  fill
+                  sizes="(min-width: 1024px) 66vw, 100vw"
+                  className="object-cover object-center"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+                <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-end justify-between gap-3 sm:inset-x-5 sm:bottom-5">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-white/80">
+                      Peta Wilayah
+                    </p>
+                    <p className="text-lg font-bold text-white sm:text-xl">Dusun Ganjuran</p>
+                  </div>
+                  <a
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-[#173d2c] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f5f4cc]"
+                    href="https://www.google.com/maps/search/?api=1&query=Dusun+Ganjuran+Yogyakarta"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Buka di Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between gap-5 rounded-3xl border border-[#d7dccf] bg-white p-6 shadow-sm">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4f6b58]">
+                  Sekilas Wilayah
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-[#4b5e50]">
+                  Wilayah dusun terbagi ke dalam beberapa RT dengan pusat layanan
+                  warga dan kegiatan gotong royong tersebar merata.
+                </p>
+              </div>
+              <dl className="grid grid-cols-2 gap-3">
+                {quickStats.map((stat) => (
+                  <div key={stat.label} className="rounded-2xl bg-[#f4f2e6] px-3 py-2.5 text-center">
+                    <dd className="text-lg font-extrabold text-[#1f573c]">{stat.value}</dd>
+                    <dt className="mt-0.5 text-[11px] uppercase tracking-wide text-[#5c6f60]">
+                      {stat.label}
+                    </dt>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </section>
@@ -251,24 +267,32 @@ export default function Home() {
               caption="Karya terbaik pelaku usaha lokal yang menjadi kekuatan ekonomi dusun."
             />
           </div>
-          <div className="grid gap-5 md:grid-cols-3 lg:gap-6">
-            {products.map((product) => (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            {featuredProducts.map((product) => (
               <article
                 key={product.name}
-                className="rounded-3xl border border-[#d7dccf] bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
+                className="flex h-full flex-col rounded-3xl border border-[#d7dccf] bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                <ProductImage style={{ background: product.accent }} label={product.name} />
+                <div className="relative">
+                  <ProductImage style={{ background: product.accent }} label={product.name} />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-[#1f573c] shadow-sm">
+                    {product.category}
+                  </span>
+                </div>
                 <h3 className="mt-4 text-base font-semibold text-[#21442f]">{product.name}</h3>
                 <p className="mt-1 text-sm font-medium text-[#38704e]">{product.owner}</p>
-                <p className="mt-2 min-h-14 text-sm leading-relaxed text-[#4b5e50]">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4b5e50]">
                   {product.description}
                 </p>
-                <button
-                  className="mt-4 rounded-full border border-[#1f573c] px-3 py-1 text-xs font-semibold text-[#1f573c] transition hover:bg-[#1f573c] hover:text-white"
-                  type="button"
+                <p className="mt-3 text-sm font-bold text-[#1f573c]">
+                  Rp {idrCurrency.format(product.price)}
+                </p>
+                <Link
+                  className="mt-4 w-fit rounded-full border border-[#1f573c] px-3 py-1 text-xs font-semibold text-[#1f573c] transition hover:bg-[#1f573c] hover:text-white"
+                  href={`/umkm/${product.slug}`}
                 >
                   Lihat Detail
-                </button>
+                </Link>
               </article>
             ))}
           </div>
