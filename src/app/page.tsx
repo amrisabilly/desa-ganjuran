@@ -226,7 +226,7 @@ export default function Home() {
                   </div>
                   <a
                     className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-[#173d2c] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f5f4cc]"
-                    href="https://www.google.com/maps/search/?api=1&query=Dusun+Ganjuran+Yogyakarta"
+                    href="https://maps.app.goo.gl/o3215mKgHBZuEE4F7"
                     rel="noopener noreferrer"
                     target="_blank"
                   >

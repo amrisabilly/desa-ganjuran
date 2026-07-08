@@ -7,8 +7,7 @@ export default function Footer() {
         <div>
           <h2 className="text-xl font-semibold">Dusun Ganjuran</h2>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/80">
-            Kelurahan Caturharjo, Kapanewon Pandak, Kabupaten Bantul,
-            Daerah Istimewa Yogyakarta.
+            Dusun Ganjuran, Plosogede, Kec. Ngluwar, Kabupaten Magelang, Jawa Tengah 56485
           </p>
         </div>
 
