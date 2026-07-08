@@ -14,17 +14,17 @@ export type UmkmProduct = {
 
 export const umkmProducts: UmkmProduct[] = [
   {
-    slug: "anyaman-bambu-tradisional",
-    name: "Anyaman Bambu Tradisional",
-    owner: "Ibu Suminah",
-    category: "Kerajinan",
-    description: "Kerajinan rumah tangga berbahan bambu dengan motif lokal.",
+    slug: "slondok-bu-nuryani",
+    name: "Slondok Bu Nuryani",
+    owner: "Bu Nuryani",
+    category: "Makanan",
+    description: "Slondok terbuat dari singkong",
     accent:
       "radial-gradient(circle at 20% 20%, #f6e8b6 0%, #c89d5c 35%, #7a5a2c 100%)",
     price: 45000,
     oldPrice: 60000,
     discountLabel: "25%",
-    location: "RT 02, Dusun Ganjuran",
+    location: "RT 06, Dusun Ganjuran",
     features: ["100% Alami", "Ramah Lingkungan", "Produksi Lokal"],
   },
   {
