@@ -133,7 +133,7 @@ export default function KKNPage() {
                 KKN Tematik 2024
               </p>
               <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Tim KKN UPN "Veteran" Yogyakarta
+                Tim KKN UPN Veteran Yogyakarta
               </h1>
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
                 Membangun bersama Dusun Ganjuran. Dedikasi nyata mahasiswa untuk pemberdayaan
