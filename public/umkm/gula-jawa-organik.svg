@@ -1,0 +1,16 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g2" x1="80" y1="60" x2="720" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7d787" />
+      <stop offset="0.5" stop-color="#b56b2d" />
+      <stop offset="1" stop-color="#4a2c1d" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="48" fill="url(#g2)"/>
+  <circle cx="650" cy="120" r="120" fill="#fff3c7" fill-opacity="0.14"/>
+  <rect x="270" y="180" width="260" height="290" rx="42" fill="#fff0d1" fill-opacity="0.95"/>
+  <rect x="290" y="210" width="220" height="220" rx="28" fill="#6d3f23"/>
+  <circle cx="400" cy="310" r="70" fill="#2f1a13"/>
+  <circle cx="400" cy="310" r="34" fill="#915421"/>
+  <text x="70" y="520" fill="#fff7df" font-family="Arial, sans-serif" font-size="42" font-weight="700">Gula Jawa Organik</text>
+</svg>

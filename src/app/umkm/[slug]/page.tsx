@@ -12,19 +12,16 @@ function toRupiah(value: number): string {
 }
 
 function ProductTile({
-  style,
+  src,
   label,
 }: {
-  style: string;
+  src: string;
   label: string;
 }) {
   return (
-    <div
-      aria-hidden="true"
-      className="h-24 w-full rounded-2xl border border-[#e1ddd2] shadow-inner"
-      style={{ background: style }}
-      title={label}
-    />
+    <div className="relative h-24 w-full overflow-hidden rounded-2xl border border-[#e1ddd2] shadow-inner">
+      <Image src={src} alt={label} fill sizes="(min-width: 1024px) 16vw, 33vw" className="object-cover" />
+    </div>
   );
 }
 
@@ -70,7 +67,7 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
             <div>
               <div className="relative aspect-4/3 overflow-hidden rounded-3xl border border-[#e1ddd2]">
                 <Image
-                  src="/bg2.jpg"
+                  src={product.image}
                   alt={product.name}
                   fill
                   priority
@@ -81,15 +78,9 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
               </div>
 
               <div className="mt-3 grid grid-cols-3 gap-3">
-                <ProductTile style={product.accent} label={`${product.name} varian 1`} />
-                <ProductTile
-                  style="radial-gradient(circle at 25% 20%, #f8dca8 0%, #af7840 45%, #4e301f 100%)"
-                  label={`${product.name} varian 2`}
-                />
-                <ProductTile
-                  style="radial-gradient(circle at 70% 20%, #b7d59f 0%, #4f7a4f 45%, #223b2a 100%)"
-                  label={`${product.name} varian 3`}
-                />
+                <ProductTile src={product.image} label={`${product.name} tampilan utama`} />
+                <ProductTile src={product.image} label={`${product.name} tampilan kedua`} />
+                <ProductTile src={product.image} label={`${product.name} tampilan ketiga`} />
               </div>
             </div>
 
@@ -160,7 +151,9 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
                 key={item.slug}
                 className="overflow-hidden rounded-2xl border border-[#d8d4c8] bg-white shadow-sm"
               >
-                <div className="h-32" style={{ background: item.accent }} />
+                <div className="relative h-32 overflow-hidden">
+                  <Image src={item.image} alt={item.name} fill sizes="(min-width: 1024px) 20vw, 100vw" className="object-cover" />
+                </div>
                 <div className="p-4">
                   <h3 className="text-base font-semibold text-[#234530]">{item.name}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#526354]">{item.description}</p>

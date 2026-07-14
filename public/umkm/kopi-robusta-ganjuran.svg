@@ -1,0 +1,17 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g3" x1="100" y1="80" x2="710" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8bc99" />
+      <stop offset="0.45" stop-color="#7b5437" />
+      <stop offset="1" stop-color="#2e2018" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="48" fill="url(#g3)"/>
+  <circle cx="155" cy="125" r="95" fill="#fff0cf" fill-opacity="0.14"/>
+  <path d="M220 392C220 314 283 250 361 250H439C517 250 580 314 580 392V456H220V392Z" fill="#f0ddc4"/>
+  <path d="M270 390C270 340 311 300 361 300H439C489 300 530 340 530 390V456H270V390Z" fill="#6e4631"/>
+  <circle cx="400" cy="330" r="66" fill="#2f2018"/>
+  <path d="M390 302C365 336 365 360 390 392" stroke="#a06c4c" stroke-width="12" stroke-linecap="round"/>
+  <path d="M410 302C435 336 435 360 410 392" stroke="#a06c4c" stroke-width="12" stroke-linecap="round"/>
+  <text x="64" y="520" fill="#fff7df" font-family="Arial, sans-serif" font-size="42" font-weight="700">Kopi Robusta Ganjuran</text>
+</svg>
