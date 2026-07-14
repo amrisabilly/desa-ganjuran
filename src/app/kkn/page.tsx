@@ -133,7 +133,7 @@ export default function KKNPage() {
                 KKN Tematik 2024
               </p>
               <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Tim KKN UPN Veteran Yogyakarta
+                Tim KKN UPN “Veteran” Yogyakarta
               </h1>
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
                 Membangun bersama Dusun Ganjuran. Dedikasi nyata mahasiswa untuk pemberdayaan
@@ -161,14 +161,14 @@ export default function KKNPage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem]">
                   <Image
                     src="/bg2.jpg"
-                    alt="Foto Tim KKN UPN Veteran Yogyakarta"
+                    alt="Foto Tim KKN UPN “Veteran” Yogyakarta"
                     fill
                     className="object-cover object-center"
                     sizes="100vw"
                   />
                 </div>
                 <div className="mt-5 rounded-[1.5rem] bg-black/20 p-4 text-sm text-white/90">
-                  <p className="font-semibold text-white">Tim KKN UPN Veteran</p>
+                  <p className="font-semibold text-white">Tim KKN UPN “Veteran”</p>
                   <p className="mt-2 leading-relaxed text-white/80">
                     Bersama masyarakat Desa Dusun Ganjuran, kami berkolaborasi untuk
                     memajukan potensi lokal dengan semangat gotong royong.
