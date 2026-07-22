@@ -115,7 +115,7 @@ export default function KKNPage() {
   return (
     <div className="min-h-screen bg-[#f3efe4] text-[#143122]">
       <Navbar />
-    <section className="relative overflow-hidden rounded-[2rem] bg-[#1f5136] text-white shadow-[0_30px_90px_-45px_rgba(16,38,22,0.85)] sm:px-10 sm:py-16">
+    <section className="relative overflow-hidden rounded-b-[2rem] bg-[#1f5136] text-white shadow-[0_30px_90px_-45px_rgba(16,38,22,0.85)] sm:px-10 sm:py-16">
           <div className="absolute inset-0 opacity-70">
             <Image
               src="/bg2.jpg"

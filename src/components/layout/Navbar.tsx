@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type NavItem = {
@@ -16,8 +18,18 @@ const navItems: NavItem[] = [
   { label: "Kontak", href: "#kontak" },
 ];
 
+const scrollLinks = new Set(["#profil", "#perangkat", "#peta", "#umkm", "#kontak"]);
+
 export default function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const getHref = (href: string) => {
+    if (scrollLinks.has(href) && pathname !== "/") {
+      return `/${href}`;
+    }
+    return href;
+  };
 
   // Kunci scroll body saat menu mobile terbuka
   useEffect(() => {
@@ -46,24 +58,24 @@ export default function Navbar() {
         />
 
         <div className="relative flex items-center justify-between">
-          <a
-            href="#profil"
+          <Link
+            href={getHref("#profil")}
             className="text-sm font-bold tracking-wide text-[#f3f2cb] transition-opacity hover:opacity-80 sm:text-base"
             onClick={() => setIsOpen(false)}
           >
             Dusun Ganjuran
-          </a>
+          </Link>
 
           {/* Menu desktop */}
           <ul className="hidden items-center gap-6 text-sm font-medium text-white/90 sm:flex">
             {navItems.map((item) => (
               <li key={item.label}>
-                <a
+                <Link
+                  href={getHref(item.href)}
                   className="relative py-1 transition hover:text-[#f3f2cb] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-[#f3f2cb] after:transition-all after:duration-300 hover:after:w-full"
-                  href={item.href}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -136,13 +148,13 @@ export default function Navbar() {
               }`}
               style={{ transitionDelay: isOpen ? `${index * 50 + 100}ms` : "0ms" }}
             >
-              <a
-                href={item.href}
+              <Link
+                href={getHref(item.href)}
                 onClick={() => setIsOpen(false)}
                 className="block rounded-xl px-4 py-3 text-base font-medium text-white/90 transition hover:bg-white/10 hover:text-[#f3f2cb]"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

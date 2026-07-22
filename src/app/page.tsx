@@ -376,12 +376,12 @@ export default function Home() {
         />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,24,16,0.25)_0%,rgba(23,50,34,0.35)_50%,rgba(10,20,13,0.55)_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A140D]/70 via-[#0A140D]/10 to-transparent" />
-        <WaveMotif
+        {/* <WaveMotif
           id="hero-motif"
           className="pointer-events-none absolute inset-0 h-full w-full"
           color="#DFA23A"
           opacity={0.07}
-        />
+        /> */}
         {/* fine grain for depth, kept extremely subtle */}
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden="true">
           <filter id="grain">
@@ -611,7 +611,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] shadow-sm">
                 <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-video">
                   <Image
-                    src="/gambar_peta.jpeg"
+                    src="/peta.jpeg"
                     alt="Peta Dusun Ganjuran"
                     fill
                     sizes="(min-width: 1024px) 66vw, 100vw"
