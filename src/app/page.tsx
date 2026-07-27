@@ -478,7 +478,7 @@ export default function Home() {
           sizes="100vw"
           className="pointer-events-none absolute inset-0 object-cover object-center"
         />
-<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,11,11,0.55)_0%,rgba(11,11,11,0.75)_50%,rgba(10,20,13,0.92)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,11,11,0.55)_0%,rgba(11,11,11,0.75)_50%,rgba(10,20,13,0.92)_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(79,121,66,0.14),transparent_45%)]" />
 
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.06]" aria-hidden="true">

@@ -40,69 +40,86 @@ type QuickStat = {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Maulana Ashim",
+    name: "MAULANA ASHIM",
     role: "Ketua Tim",
     tier: "inti",
-    image: "/kkn/anggota/maulana.jpg",
+    image: "/kkn/ashim.jpg",
     description:
-      "Memimpin koordinasi tim dan menjadi penghubung utama dengan warga serta pihak kampus.",
+      "Memimpin tim, menetapkan strategi KKN, dan memastikan semua program berjalan selaras dengan tujuan desa.",
   },
   {
-    name: "Siti Aminah",
+    name: "FEZAQINA RIVANAHESYA",
     role: "Wakil Ketua",
     tier: "inti",
-    image: "/kkn/anggota/siti.jpg",
+    image: "/kkn/feza.jpg",
     description:
-      "Mendukung ketua dalam pengambilan keputusan dan mengawasi jalannya program kerja harian.",
+      "Mendukung ketua tim dalam koordinasi harian serta memastikan komunikasi internal berjalan lancar.",
   },
   {
-    name: "Ricky Prasetyo",
-    role: "Sub Koordinator",
-    tier: "bidang",
-    image: "/kkn/anggota/ricky.jpg",
-    description:
-      "Mengelola pembagian tugas antar bidang agar program berjalan sesuai target.",
-  },
-  {
-    name: "Lia Novita",
+    name: "FAHRU HANDIAN SUYUTI",
     role: "Humas",
     tier: "bidang",
-    image: "/kkn/anggota/lia.jpg",
+    image: "/kkn/fahru.jpg",
     description:
-      "Menjembatani komunikasi antara tim KKN dengan masyarakat dan perangkat dusun.",
+      "Mengelola komunikasi publik dan memperkuat hubungan tim KKN dengan warga serta pihak mitra.",
   },
   {
-    name: "Agus Salim",
+    name: "SHERYL INDRIA FEBRINA SETIAWAN",
+    role: "Humas",
+    tier: "bidang",
+    image: "/kkn/sheryl.jpg",
+    description:
+      "Menjadi penghubung tim dengan komunitas lokal dan membantu menyebarkan informasi program secara efektif.",
+  },
+  {
+    name: "DEVITA EKA PUTRY SITANGGANG",
+    role: "Sekretaris",
+    tier: "bidang",
+    image: "/kkn/devita.jpg",
+    description:
+      "Mengelola administrasi tim, dokumentasi rapat, dan memastikan semua catatan program tersusun rapi.",
+  },
+  {
+    name: "ARINTA WIDYAWARA ANTARINI",
+    role: "PDD",
+    tier: "bidang",
+    image: "/kkn/arinta.jpg",
+    description:
+      "Mendampingi warga dalam kegiatan pemberdayaan desa dan membantu pelaksanaan program pelatihan.",
+  },
+  {
+    name: "FA ID RUSYAN KIMIANTORY",
+    role: "PDD",
+    tier: "bidang",
+    image: "/kkn/faid.jpg",
+    description:
+      "Berfokus pada penguatan kapasitas masyarakat dan pendampingan program pemberdayaan.",
+  },
+  {
+    name: "NOVITA HANDAYANI",
+    role: "PDD",
+    tier: "bidang",
+    image: "/kkn/novita.jpg",
+    description:
+      "Mendukung kegiatan pemberdayaan dan memastikan warga mendapat dukungan yang tepat selama program.",
+  },
+  {
+    name: "AMRI SABILLY",
     role: "Logistik",
     tier: "bidang",
-    image: "/kkn/anggota/agus.jpg",
+    image: "/kkn/billy.jpg",
     description:
-      "Bertanggung jawab atas perlengkapan dan kebutuhan operasional setiap kegiatan.",
+      "Mengatur kebutuhan logistik tim, mulai dari transportasi hingga peralatan kegiatan lapangan.",
   },
   {
-    name: "Dhiya Sari",
-    role: "Pendamping",
+    name: "HANIFAH JULIA SAPUTRI",
+    role: "Logistik",
     tier: "bidang",
-    image: "/kkn/anggota/dhiya.jpg",
+    image: "/kkn/hani.jpg",
     description:
-      "Mendampingi warga dalam pelaksanaan program pemberdayaan dan pelatihan.",
+      "Menangani persiapan perlengkapan kegiatan dan memastikan semua kebutuhan operasional tersedia.",
   },
-  {
-    name: "Hendro Kusuma",
-    role: "Dokumentasi",
-    tier: "bidang",
-    image: "/kkn/anggota/hendro.jpg",
-    description:
-      "Mengabadikan setiap momen kegiatan untuk keperluan arsip dan publikasi tim.",
-  },
-  {
-    name: "Nina Amelia",
-    role: "Desain & Publikasi",
-    tier: "bidang",
-    image: "/kkn/anggota/nina.jpg",
-    description:
-      "Merancang materi visual dan mengelola publikasi kegiatan tim di media sosial.",
-  },
+  
 ];
 
 const galleryItems: GalleryItem[] = [
@@ -146,7 +163,7 @@ const programCards: ProgramCard[] = [
 
 const heroStats: QuickStat[] = [
   { label: "Anggota Tim", value: "10" },
-  { label: "Program Kerja", value: "3" },
+  { label: "Program Kerja", value: "17" },
   { label: "Angkatan", value: "2026" },
 ];
 
