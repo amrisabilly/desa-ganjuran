@@ -56,6 +56,14 @@ const teamMembers: TeamMember[] = [
       "Mendukung ketua tim dalam koordinasi harian serta memastikan komunikasi internal berjalan lancar.",
   },
   {
+    name: "DEVITA EKA PUTRY SITANGGANG",
+    role: "Sekretaris",
+    tier: "bidang",
+    image: "/kkn/devita.webp",
+    description:
+      "Mengelola administrasi tim, dokumentasi rapat, dan memastikan semua catatan program tersusun rapi.",
+  },
+  {
     name: "FAHRU HANDIAN SUYUTI",
     role: "Humas",
     tier: "bidang",
@@ -72,20 +80,12 @@ const teamMembers: TeamMember[] = [
       "Menjadi penghubung tim dengan komunitas lokal dan membantu menyebarkan informasi program secara efektif.",
   },
   {
-    name: "DEVITA EKA PUTRY SITANGGANG",
-    role: "Sekretaris",
-    tier: "bidang",
-    image: "/kkn/devita.webp",
-    description:
-      "Mengelola administrasi tim, dokumentasi rapat, dan memastikan semua catatan program tersusun rapi.",
-  },
-  {
     name: "ARINTA WIDYAWARA ANTARINI",
     role: "PDD",
     tier: "bidang",
     image: "/kkn/arinta.webp",
     description:
-      "Mendampingi warga dalam kegiatan pemberdayaan desa dan membantu pelaksanaan program pelatihan.",
+      "Mendokumentasikan setiap kegiatan serta mengelola publikasi dan dekorasi acara tim KKN.",
   },
   {
     name: "FA ID RUSYAN KIMIANTORY",
@@ -93,7 +93,7 @@ const teamMembers: TeamMember[] = [
     tier: "bidang",
     image: "/kkn/faid.webp",
     description:
-      "Berfokus pada penguatan kapasitas masyarakat dan pendampingan program pemberdayaan.",
+      "Bertanggung jawab atas dokumentasi visual dan penyusunan materi publikasi kegiatan lapangan.",
   },
   {
     name: "NOVITA HANDAYANI",
@@ -101,7 +101,7 @@ const teamMembers: TeamMember[] = [
     tier: "bidang",
     image: "/kkn/novita.webp",
     description:
-      "Mendukung kegiatan pemberdayaan dan memastikan warga mendapat dukungan yang tepat selama program.",
+      "Membantu produksi dokumentasi, desain publikasi, serta dekorasi setiap kegiatan tim.",
   },
   {
     name: "AMRI SABILLY",
@@ -119,8 +119,8 @@ const teamMembers: TeamMember[] = [
     description:
       "Menangani persiapan perlengkapan kegiatan dan memastikan semua kebutuhan operasional tersedia.",
   },
-  
 ];
+
 
 const galleryItems: GalleryItem[] = [
   {
