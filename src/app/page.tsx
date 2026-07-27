@@ -10,15 +10,17 @@ import { umkmProducts } from "@/data/umkm";
 
 /**
  * Type system
- * — Fraunces carries the headlines: a warm, slightly rustic serif.
- * — Plus Jakarta Sans (designed for the city of Jakarta) carries the body copy,
- *   a small deliberate nod to place.
- * — JetBrains Mono is used only for figures — stats, prices, dates — to read
- *   like entries in a village ledger (buku induk).
+ * — Fraunces carries the headlines: a bold, high-contrast serif built for
+ *   impact, echoing the oversized display type of the reference design.
+ * — Plus Jakarta Sans (designed for the city of Jakarta) carries the body
+ *   copy, a small deliberate nod to place.
+ * — JetBrains Mono is used only for figures — section numbers, stats,
+ *   prices, dates — to read like entries in a village ledger (buku induk)
+ *   and to power the numbered index in the hero.
  */
 const display = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-display",
 });
@@ -33,7 +35,12 @@ const ledger = JetBrains_Mono({
   variable: "--font-ledger",
 });
 
-/* ---------------------------------- Data --------------------------------- */
+/* --------------------------------- Palette --------------------------------
+   White stage (#FFFFFF) with a single earthy-green accent (#4F7942),
+   evoking sawah/pertanian tones. Hero and two feature panels (Jelajahi,
+   Kontak) keep a dark photographic treatment for contrast; everything
+   else sits on a clean white ground with dark-ink text.
+------------------------------------------------------------------------- */
 
 type VillageRole = {
   title: string;
@@ -50,6 +57,12 @@ type QuickStat = {
 type HistoryPoint = {
   title: string;
   description: string;
+};
+
+type SectionIndex = {
+  number: string;
+  label: string;
+  href: string;
 };
 
 const villageRoles: VillageRole[] = [
@@ -89,7 +102,42 @@ const historyPoints: HistoryPoint[] = [
   },
 ];
 
+// Real sequence: the sections a visitor moves through, top to bottom —
+// mirrors the reference's numbered slide index, but here the numbers
+// encode actual page order rather than decoration.
+const sectionIndex: SectionIndex[] = [
+  { number: "01", label: "Profil", href: "#profil" },
+  { number: "02", label: "Sorotan", href: "#sorotan" },
+  { number: "03", label: "Tentang", href: "#profil-desa" },
+  { number: "04", label: "Peta", href: "#peta" },
+  { number: "05", label: "UMKM", href: "#umkm" },
+];
+
+const heroFacts = [
+  {
+    title: "Letak Wilayah",
+    description:
+      "Dusun Ganjuran berada di Kecamatan Ngluwar, Kabupaten Magelang, dikelilingi lahan pertanian dan permukiman warga.",
+  },
+  {
+    title: "Semangat Warga",
+    description:
+      "Gotong royong menjadi denyut utama setiap kegiatan, dari perawatan fasilitas umum hingga acara tradisi.",
+  },
+  {
+    title: "Ekonomi Lokal",
+    description:
+      "Pelaku UMKM dusun menghasilkan produk unggulan yang menopang perputaran ekonomi warga sehari-hari.",
+  },
+];
+
 const featuredProducts = umkmProducts.slice(0, 3);
+const rankLabels = ["Produk No. 01", "Produk No. 02", "Produk No. 03"];
+
+// Highlights shown directly under the hero, styled after the reference's
+// ranked destination grid — here it ranks the dusun's own products.
+const highlightProducts = umkmProducts.slice(0, 4);
+const highlightLabels = ["Favorit #1", "Favorit #2", "Favorit #3", "Favorit #4"];
 
 /* --------------------------- Motion primitives ---------------------------- */
 
@@ -199,8 +247,8 @@ function CountUp({ value }: { value: string }) {
 function WaveMotif({
   id,
   className = "",
-  color = "#EFEAD9",
-  opacity = 0.12,
+  color = "#4F7942",
+  opacity = 0.1,
 }: {
   id: string;
   className?: string;
@@ -315,16 +363,56 @@ function SectionHeading({
 }) {
   return (
     <div className="mx-auto max-w-2xl space-y-3 text-center">
-      <p className={`${display.className} text-xs italic tracking-[0.2em] text-[#173d2b]`}>
+      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.28em] text-[#4F7942]`}>
         {eyebrow}
       </p>
-      <h2 className={`${display.className} text-2xl font-semibold text-[#173d2b] sm:text-3xl`}>
+      <h2 className={`${display.className} text-2xl font-semibold uppercase tracking-tight text-[#1C2818] sm:text-3xl`}>
         {title}
       </h2>
       {caption ? (
-        <p className="text-sm leading-relaxed text-[#5B6B5E]">{caption}</p>
+        <p className="text-sm leading-relaxed text-[#5B6355]">{caption}</p>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * Ambient background accents used behind the main content — soft, blurred
+ * glows in the earthy-green accent plus a faint dot-grid, the kind of quiet
+ * depth modern light-mode sites use so sections don't read as flat white
+ * panels while text and cards stay fully legible on top.
+ */
+function AmbientBackground() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(28,40,24,0.9) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }}
+      />
+      <div className="absolute -left-32 top-[6%] h-[380px] w-[380px] rounded-full bg-[#4F7942]/15 blur-[130px]" />
+      <div className="absolute -right-40 top-[32%] h-[460px] w-[460px] rounded-full bg-[#4F7942]/10 blur-[150px]" />
+      <div className="absolute left-[8%] top-[58%] h-[340px] w-[340px] rounded-full bg-black/[0.02] blur-[130px]" />
+      <div className="absolute -right-24 bottom-[4%] h-[420px] w-[420px] rounded-full bg-[#4F7942]/12 blur-[140px]" />
+    </div>
+  );
+}
+
+/** Circular outlined play button, used on the CTA panel below the highlights grid. */
+function PlayIcon({ size = "sm" }: { size?: "sm" | "lg" }) {
+  const wrap = size === "lg" ? "h-14 w-14" : "h-8 w-8";
+  const glyph = size === "lg" ? "h-5 w-5" : "h-3 w-3";
+  return (
+    <span
+      className={`inline-flex ${wrap} shrink-0 items-center justify-center rounded-full border border-white/70 bg-black/30 backdrop-blur-sm transition group-hover:border-[#4F7942] group-hover:bg-[#4F7942]/20`}
+    >
+      <svg viewBox="0 0 24 24" className={`${glyph} translate-x-[1px] fill-white`} aria-hidden="true">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </span>
   );
 }
 
@@ -338,6 +426,7 @@ function ProductImage({ src, label }: { src: string; label: string }) {
         sizes="(min-width: 1024px) 25vw, 100vw"
         className="object-cover transition duration-500 group-hover:scale-105"
       />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
     </div>
   );
 }
@@ -346,10 +435,11 @@ function ProductImage({ src, label }: { src: string; label: string }) {
 
 export default function Home() {
   const idrCurrency = new Intl.NumberFormat("id-ID");
+  const [activeSection, setActiveSection] = useState(0);
 
   return (
     <div
-      className={`${display.variable} ${body.variable} ${ledger.variable} min-h-screen bg-[#EFEAD9] font-[var(--font-body)] text-[#173d2b]`}
+      className={`${display.variable} ${body.variable} ${ledger.variable} min-h-screen bg-white font-[var(--font-body)] text-[#1C2818]`}
     >
       <style jsx global>{`
         @keyframes motif-drift {
@@ -365,7 +455,7 @@ export default function Home() {
       <Navbar />
 
       {/* ------------------------------- Hero ---------------------------- */}
-      <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#173d2b] px-4 pb-28 pt-4 text-white sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-32">
+      <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-black px-4 pb-28 pt-4 text-white sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-32">
         <Image
           src="/bg3.webp"
           alt="Lanskap Dusun Ganjuran"
@@ -374,42 +464,63 @@ export default function Home() {
           sizes="100vw"
           className="pointer-events-none absolute inset-0 object-cover object-center"
         />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,24,16,0.25)_0%,rgba(23,61,43,0.35)_50%,rgba(10,20,13,0.55)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A140D]/70 via-[#0A140D]/10 to-transparent" />
+        {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" /> */}
         {/* fine grain for depth, kept extremely subtle */}
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden="true">
+        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.06]" aria-hidden="true">
           <filter id="grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
           </filter>
           <rect width="100%" height="100%" filter="url(#grain)" />
         </svg>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(243,242,203,0.12),transparent_45%)]" />
+
+        {/* numbered section index, right edge — a real sequence: hero → perangkat → sejarah → peta → umkm */}
+        <nav
+          aria-label="Navigasi bagian"
+          className="pointer-events-auto absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-end gap-3 sm:right-8 sm:flex lg:right-12"
+        >
+          {sectionIndex.map((item, i) => {
+            const isActive = i === activeSection;
+            return (
+              <a
+                key={item.number}
+                href={item.href}
+                onMouseEnter={() => setActiveSection(i)}
+                className={`${ledger.className} flex items-center gap-3 transition-all duration-300 ${
+                  isActive ? "text-white" : "text-white/35 hover:text-white/70"
+                }`}
+              >
+                {isActive && <span className="h-px w-6 bg-[#4F7942]" />}
+                <span className={isActive ? "text-2xl font-medium" : "text-sm"}>{item.number}</span>
+              </a>
+            );
+          })}
+        </nav>
 
         <section
           id="profil"
-          className="relative z-10 mx-auto my-auto flex w-full max-w-3xl flex-col items-center pb-8 pt-12 text-center sm:pt-16 lg:pt-10"
+          className="relative z-10 mx-auto my-auto flex w-full max-w-3xl flex-col items-center pb-8 pt-12 text-center sm:pt-16 lg:pt-[5em]"
         >
           <Reveal>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
-              <span className="h-1 w-1 rounded-full bg-[#f3f2cb]" />
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#4F7942]" />
               Kecamatan Ngluwar &middot; Magelang
             </p>
           </Reveal>
 
           <h1
-            className={`${display.className} mt-6 text-balance text-4xl font-semibold leading-[1.05] drop-shadow-[0_4px_20px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl`}
+            className={`${display.className} mt-6 text-balance text-5xl font-semibold uppercase leading-[0.95] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)] sm:text-7xl lg:text-8xl`}
           >
             <WordReveal text="Portal Digital" />
             <br />
             <WordReveal
               text="Dusun Ganjuran"
               baseDelay={140}
-              className="italic text-[#f3f2cb]"
+              className="text-[#8FCB74]"
             />
           </h1>
 
           <Reveal delay={420}>
-            <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-base">
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-base">
               Platform informasi warga untuk memperkenalkan perangkat dusun,
               pemetaan wilayah, dan produk UMKM unggulan secara terbuka.
             </p>
@@ -418,11 +529,11 @@ export default function Home() {
           <Reveal delay={520}>
             <div className="mt-9 flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a
-                className="group relative w-full overflow-hidden rounded-full bg-[#f3f2cb] px-6 py-2.5 text-center text-sm font-semibold text-[#173d2b] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(23,61,43,0.45)] sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-full bg-[#4F7942] px-6 py-2.5 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(79,121,66,0.55)] sm:w-auto"
                 href="#peta"
               >
                 <span className="relative z-10">Lihat Peta</span>
-                <span className="absolute inset-0 -translate-x-full bg-white/25 transition-transform duration-500 group-hover:translate-x-0" />
+                <span className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-500 group-hover:translate-x-0" />
               </a>
               <a
                 className="w-full rounded-full border border-white/30 px-6 py-2.5 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/10 sm:w-auto"
@@ -432,157 +543,261 @@ export default function Home() {
               </a>
             </div>
           </Reveal>
-
-          <Reveal delay={620}>
-            <div className="mx-auto mt-11 flex max-w-lg items-center justify-center divide-x divide-white/15">
-              {quickStats.map((stat) => (
-                <div key={stat.label} className="flex-1 px-3 text-center sm:px-5">
-                  <p className={`${ledger.className} text-lg font-medium text-white sm:text-2xl`}>
-                    <CountUp value={stat.value} />
-                  </p>
-                  <p className="mt-0.5 text-[9px] uppercase tracking-[0.1em] text-white/55 sm:text-[10px]">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </section>
 
-        {/* scroll cue */}
-        <a
-          href="#perangkat"
-          aria-label="Gulir ke bawah"
-          className="relative z-10 mx-auto hidden flex-col items-center gap-2 text-white/50 transition hover:text-white/80 motion-safe:animate-bounce sm:flex"
-        >
-          <span className="text-[10px] uppercase tracking-[0.2em]">Gulir</span>
-          <span className="h-8 w-px bg-gradient-to-b from-white/60 to-transparent" />
-        </a>
+        {/* three short facts, echoing the reference's caption row, tied to real anchors below */}
+        <Reveal delay={600} className="relative z-10 mt-auto mx-auto grid gap-6 pt-10 sm:grid-cols-3 sm:gap-8">
+          {heroFacts.map((fact) => (
+            <div key={fact.title} className="max-w-xs">
+              <p className={`${ledger.className} text-[11px] font-bold uppercase tracking-[0.18em] text-[#8FCB74]`}>
+                {fact.title}
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-white/70 sm:text-[13px]">
+                {fact.description}
+              </p>
+            </div>
+          ))}
+        </Reveal>
 
-        <WaveDivider fill="#EFEAD9" />
+        <Reveal delay={700} className="relative z-10 mt-8">
+          <a
+            href="#sorotan"
+            className="inline-flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 transition hover:text-white"
+          >
+            Jelajahi
+            <span aria-hidden="true">&gt;&gt;</span>
+          </a>
+          <div className="mt-4 flex h-px w-full max-w-xl items-center">
+            <span className="h-px w-24 bg-[#4F7942]" />
+            <span className="h-px flex-1 bg-white/20" />
+          </div>
+        </Reveal>
+
+        <WaveDivider fill="#FFFFFF" />
       </header>
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 pb-24 pt-16 sm:px-8 sm:pt-20 lg:px-10 lg:pt-24">
-        {/* --------------------------- Perangkat Dusun -------------------- */}
-        <section id="perangkat" aria-labelledby="perangkat-title" className="scroll-mt-24 space-y-8">
+      <div className="relative">
+        <AmbientBackground />
+        <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 pb-24 pt-16 sm:px-8 sm:pt-20 lg:px-10 lg:pt-24">
+        {/* ------------------------ Sorotan Dusun (ranked grid) ------------ */}
+        <section id="sorotan" aria-labelledby="sorotan-title" className="scroll-mt-24 space-y-8">
           <Reveal>
-            <div id="perangkat-title">
-              <SectionHeading
-                title="Perangkat Dusun"
-                caption="Struktur kepemimpinan dan penggerak kegiatan masyarakat Dusun Ganjuran."
-              />
+            <div id="sorotan-title" className="mx-auto max-w-2xl space-y-3 text-center">
+              <p className="text-sm text-[#6E7566]">Bingung mulai dari mana? Ini sorotan kami</p>
+              <h2 className={`${display.className} text-2xl font-semibold uppercase tracking-tight text-[#1C2818] sm:text-3xl`}>
+                Sorotan Dusun Ganjuran
+              </h2>
             </div>
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
-            {villageRoles.map((role, i) => (
-              <Reveal key={role.title} delay={i * 120}>
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition duration-300 hover:-translate-y-1 hover:border-[#173d2b]/50 hover:shadow-[0_20px_40px_-24px_rgba(23,61,43,0.35)]">
-                  <span className="absolute right-0 top-0 h-14 w-14 -translate-y-7 translate-x-7 rotate-45 bg-[#173d2b]/90 transition group-hover:bg-[#173d2b]" />
-                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
-                    {role.title}
-                  </p>
-                  <h3 className={`${display.className} mt-2 text-xl font-semibold text-[#173d2b]`}>
-                    {role.name}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[#5B6B5E]">
-                    {role.description}
-                  </p>
-                  <div className="mt-4 flex items-center justify-between border-t border-dashed border-[#D9D2B8] pt-3">
-                    <span className={`${ledger.className} text-[11px] text-[#7C8A7E]`}>{role.since}</span>
-                    <a
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#173d2b] transition group-hover:gap-1.5 group-hover:text-[#0f2a1d]"
-                      href="#kontak"
-                    >
-                      Hubungi <span aria-hidden="true">&rarr;</span>
-                    </a>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+            {highlightProducts.map((product, i) => (
+              <Reveal key={product.name} delay={i * 90}>
+                <Link href={`/umkm/${product.slug}`} className="group block">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-black/10">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(min-width: 1024px) 22vw, 45vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   </div>
-                </article>
+                  <p className={`${display.className} mt-3 text-base font-semibold text-[#1C2818]`}>
+                    {highlightLabels[i] ?? `Favorit #${i + 1}`}
+                  </p>
+                  <p className="text-xs text-[#6E7566]">{product.name}</p>
+                </Link>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <div className="flex items-center gap-4 pt-2">
+              <span className="h-px w-24 bg-[#4F7942]" />
+              <span className="h-px flex-1 bg-black/10" />
+            </div>
+          </Reveal>
         </section>
 
-        {/* -------------------------------- Sejarah ------------------------ */}
-        <section id="sejarah" aria-labelledby="history-title" className="scroll-mt-24 space-y-8">
+        {/* --------------------- Jelajahi & Nikmati (CTA panel) ------------ */}
+        <section id="jelajahi" aria-labelledby="jelajahi-title" className="scroll-mt-24">
           <Reveal>
-            <div id="history-title">
+            <div className="relative isolate overflow-hidden rounded-[2rem] border border-black/10 bg-black">
+              <Image
+                src="/bg3.webp"
+                alt="Suasana Dusun Ganjuran"
+                fill
+                sizes="100vw"
+                className="object-cover object-center opacity-60"
+              />
+              <div className="pointer-events-none absolute inset-0 " />
+
+              <div className="relative z-10 flex flex-col gap-10 p-6 sm:p-10 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-md">
+                  <h2
+                    id="jelajahi-title"
+                    className={`${display.className} text-3xl font-semibold uppercase leading-[1.05] tracking-tight text-white sm:text-4xl`}
+                  >
+                    Jelajahi dan
+                    <br />
+                    Nikmati
+                    <br />
+                    Dusun Ganjuran
+                  </h2>
+
+                  <a href="#umkm" className="group mt-6 inline-flex items-center gap-3 text-sm font-semibold text-white">
+                    <PlayIcon />
+                    Pilih tujuan jelajahmu
+                  </a>
+
+                  <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">
+                    Dusun Ganjuran berada di Kecamatan Ngluwar, Kabupaten
+                    Magelang — dikelilingi lahan pertanian, permukiman warga,
+                    dan semangat gotong royong yang menghidupkan setiap
+                    kegiatan bersama.
+                  </p>
+                </div>
+
+                <div className="flex gap-3">
+                  <a
+                    href="#peta"
+                    className="group relative h-32 w-40 shrink-0 overflow-hidden rounded-xl border border-white/10 sm:h-36 sm:w-48"
+                  >
+                    <Image
+                      src="/peta.jpeg"
+                      alt="Peta Dusun Ganjuran"
+                      fill
+                      sizes="200px"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-black/25" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <PlayIcon size="lg" />
+                    </span>
+                  </a>
+                  <a
+                    href="#profil-desa"
+                    className="group relative h-32 w-40 shrink-0 overflow-hidden rounded-xl border border-white/10 sm:h-36 sm:w-48"
+                  >
+                    <Image
+                      src="/bg2.jpg"
+                      alt="Suasana Dusun Ganjuran"
+                      fill
+                      sizes="200px"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </a>
+                </div>
+              </div>
+
+              <p className="relative z-10 px-6 pb-5 text-right text-xs text-white/35 sm:px-10 sm:pb-6">
+                instagram.com/dusun.ganjuran_
+              </p>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* ------------------------------ Profil Desa ----------------------- */}
+        <section id="profil-desa" aria-labelledby="profil-desa-title" className="scroll-mt-24 space-y-8">
+          <Reveal>
+            <div id="profil-desa-title">
               <SectionHeading
-                eyebrow="Sejarah Desa"
-                title="Jejak Sejarah Dusun Ganjuran"
-                caption="Menilik akar budaya, nama, dan tradisi gotong royong yang menjadi fondasi komunitas kami."
+                eyebrow="Tentang Kami"
+                title="Mengenal Dusun Ganjuran"
+                caption="Perjalanan, nilai, dan orang-orang yang menjaga denyut kehidupan Dusun Ganjuran tetap hidup dari generasi ke generasi."
               />
             </div>
           </Reveal>
+
           <Reveal delay={100}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_25px_70px_-45px_rgba(23,61,43,0.55)] lg:p-8">
-              <div className="grid gap-6 lg:grid-cols-[0.95fr_1fr] lg:items-stretch">
-                <div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-[#173d2b] shadow-[0_30px_60px_-30px_rgba(15,42,29,0.7)]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_25px_70px_-45px_rgba(28,40,24,0.25)]">
+              <div className="grid lg:grid-cols-[1fr_1.15fr]">
+                {/* Image column: founding-year badge + pull-quote */}
+                <div className="relative min-h-[320px] overflow-hidden lg:min-h-full">
                   <Image
-                    src="/bg2.jpg"  
-                    alt="Sejarah Dusun Ganjuran"
+                    src="/bg2.jpg"
+                    alt="Suasana Dusun Ganjuran"
                     fill
                     sizes="(min-width: 1024px) 45vw, 100vw"
                     className="object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-                  <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
-                    <p className={`${ledger.className} text-[11px] uppercase tracking-[0.2em] text-[#f3f2cb]`}>
-                      Warisan Budaya
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/10" />
+
+                  <div className="absolute left-5 top-5 rounded-2xl border border-white/15 bg-black/50 px-4 py-3 backdrop-blur-md">
+                    <p className={`${ledger.className} text-[10px] uppercase tracking-[0.2em] text-[#8FCB74]`}>
+                      Berdiri Sejak
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-white/90">
-                      Jejak perjalanan desa dari ladang dan gotong royong menuju
-                      komunitas yang tumbuh bersama.
+                    <p className={`${display.className} mt-1 text-3xl font-semibold text-white`}>1924</p>
+                  </div>
+
+                  <div className="absolute inset-x-5 bottom-5">
+                    <p className={`${display.className} text-lg italic leading-snug text-white sm:text-xl`}>
+                      &ldquo;Gotong royong adalah napas dusun kami.&rdquo;
                     </p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/50">Nilai Utama Warga</p>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between gap-6">
-                  <p className="text-sm leading-relaxed text-[#5B6B5E]">
-                    Dusun Ganjuran lahir dari kearifan lokal dan semangat gotong
-                    royong. Sejarah desa tercatat bukan hanya melalui angka,
-                    namun juga melalui budaya dan cerita generasi yang terus
-                    dirawat.
-                  </p>
+                {/* Text column: narrative, history highlights, leadership chips */}
+                <div className="flex flex-col justify-between gap-8 p-6 sm:p-10">
+                  <div className="space-y-4">
+                    <p className="text-sm leading-relaxed text-[#5B6355] sm:text-[15px]">
+                      Dusun Ganjuran lahir dari kearifan lokal dan semangat
+                      gotong royong. Nama Ganjuran tumbuh dari cerita lokal
+                      dan lingkungan pertanian yang hangat, tempat masyarakat
+                      berkumpul untuk berbagi hasil panen — sebuah fondasi
+                      yang terus dirawat hingga hari ini melalui budaya dan
+                      cerita generasi.
+                    </p>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl bg-[#EFEAD9] p-4">
-                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
-                        Tahun Berdiri
-                      </p>
-                      <p className={`${display.className} mt-2 text-3xl font-semibold text-[#173d2b]`}>
-                        1924
-                      </p>
-                      <p className="mt-1 text-xs text-[#7C8A7E]">
-                        Awal komunitas pertanian dan tradisi gotong royong.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl bg-[#EFEAD9] p-4">
-                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
-                        Nilai Utama
-                      </p>
-                      <p className={`${display.className} mt-2 text-2xl font-semibold text-[#173d2b]`}>
-                        Gotong Royong
-                      </p>
-                      <p className="mt-1 text-xs text-[#7C8A7E]">
-                        Landasan semua aktivitas pembangunan dan budaya desa.
-                      </p>
+                    <div className="grid gap-4 border-l-2 border-dashed border-black/10 pl-5 sm:grid-cols-2 sm:border-l-0 sm:pl-0">
+                      {historyPoints.map((point, idx) => (
+                        <div key={point.title} className="relative sm:pl-6">
+                          <span
+                            className={`${ledger.className} absolute -left-[26px] top-0.5 flex h-5 w-5 items-center justify-center rounded-sm bg-[#4F7942] text-[10px] font-medium text-white sm:left-0`}
+                          >
+                            {idx + 1}
+                          </span>
+                          <h3 className="text-sm font-semibold text-[#1C2818]">{point.title}</h3>
+                          <p className="mt-1.5 text-xs leading-relaxed text-[#5B6355]">
+                            {point.description}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="space-y-4 border-l-2 border-dashed border-[#D9D2B8] pl-5">
-                    {historyPoints.map((point, idx) => (
-                      <div key={point.title} className="relative">
-                        <span
-                          className={`${ledger.className} absolute -left-[26px] top-0.5 flex h-5 w-5 items-center justify-center rounded-sm bg-[#173d2b] text-[10px] font-medium text-[#f3f2cb]`}
+                  {/* Leadership, folded in as compact contact chips rather than a separate section */}
+                  <div className="border-t border-dashed border-black/10 pt-6">
+                    <p className={`${ledger.className} mb-3 text-[11px] uppercase tracking-[0.18em] text-[#4F7942]`}>
+                      Perangkat &amp; Penggerak Dusun
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {villageRoles.map((role) => (
+                        <a
+                          key={role.name}
+                          href="#kontak"
+                          className="group flex items-center gap-3 rounded-full border border-black/10 bg-[#F3F5EE] py-2 pl-2 pr-4 transition hover:-translate-y-0.5 hover:border-[#4F7942]/50"
                         >
-                          {idx + 1}
-                        </span>
-                        <h3 className="text-base font-semibold text-[#173d2b]">{point.title}</h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-[#5B6B5E]">
-                          {point.description}
-                        </p>
-                      </div>
-                    ))}
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#4F7942] text-xs font-semibold text-white">
+                            {role.name
+                              .split(" ")
+                              .map((w) => w[0])
+                              .slice(0, 2)
+                              .join("")
+                              .toUpperCase()}
+                          </span>
+                          <span>
+                            <p className="text-[11px] uppercase tracking-[0.08em] text-[#6E7566]">{role.title}</p>
+                            <p className="text-sm font-semibold text-[#1C2818] transition group-hover:text-[#4F7942]">
+                              {role.name}
+                            </p>
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -602,7 +817,7 @@ export default function Home() {
           </Reveal>
           <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
             <Reveal delay={100} className="lg:col-span-2">
-              <div className="relative overflow-hidden rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] shadow-sm">
+              <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm">
                 <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-video">
                   <Image
                     src="/peta.jpeg"
@@ -611,10 +826,10 @@ export default function Home() {
                     sizes="(min-width: 1024px) 66vw, 100vw"
                     className="object-cover object-center transition duration-700 hover:scale-[1.03]"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/65 via-black/5 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent" />
                   <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-end justify-between gap-3 sm:inset-x-5 sm:bottom-5">
                     <div>
-                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.16em] text-white/75`}>
+                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.16em] text-white/70`}>
                         Peta Wilayah
                       </p>
                       <p className={`${display.className} text-lg font-semibold text-white sm:text-xl`}>
@@ -622,7 +837,7 @@ export default function Home() {
                       </p>
                     </div>
                     <a
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#f3f2cb] px-4 py-2 text-xs font-semibold text-[#173d2b] shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(23,61,43,0.45)]"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#4F7942] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(79,121,66,0.55)]"
                       href="https://maps.app.goo.gl/o3215mKgHBZuEE4F7"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -635,23 +850,23 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="flex h-full flex-col justify-between gap-5 rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-6">
+              <div className="flex h-full flex-col justify-between gap-5 rounded-2xl border border-black/10 bg-white p-6">
                 <div>
-                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
+                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#4F7942]`}>
                     Sekilas Wilayah
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5B6B5E]">
+                  <p className="mt-2 text-sm leading-relaxed text-[#5B6355]">
                     Wilayah dusun terbagi ke dalam beberapa RT dengan pusat
                     layanan warga dan kegiatan gotong royong tersebar merata.
                   </p>
                 </div>
                 <dl className="grid grid-cols-2 gap-3">
                   {quickStats.map((stat) => (
-                    <div key={stat.label} className="rounded-xl bg-[#EFEAD9] px-3 py-2.5 text-center">
-                      <dd className={`${ledger.className} text-lg font-medium text-[#173d2b]`}>
-                        {stat.value}
+                    <div key={stat.label} className="rounded-xl bg-[#F3F5EE] px-3 py-2.5 text-center">
+                      <dd className={`${ledger.className} text-lg font-medium text-[#1C2818]`}>
+                        <CountUp value={stat.value} />
                       </dd>
-                      <dt className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#7C8A7E]">
+                      <dt className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#6E7566]">
                         {stat.label}
                       </dt>
                     </div>
@@ -665,43 +880,56 @@ export default function Home() {
         {/* --------------------------------- UMKM --------------------------- */}
         <section id="umkm" aria-labelledby="umkm-title" className="scroll-mt-24 space-y-8">
           <Reveal>
-            <div id="umkm-title">
-              <SectionHeading
-                title="Produk UMKM Unggulan"
-                caption="Karya terbaik pelaku usaha lokal yang menjadi kekuatan ekonomi dusun."
-              />
+            <div id="umkm-title" className="mx-auto max-w-2xl space-y-3 text-center">
+              <p className="text-sm text-[#6E7566]">Bingung pilih produk mana? Ini rekomendasi kami</p>
+              <h2 className={`${display.className} text-2xl font-semibold uppercase tracking-tight text-[#1C2818] sm:text-3xl`}>
+                Produk Unggulan Warga
+              </h2>
             </div>
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {featuredProducts.map((product, i) => (
               <Reveal key={product.name} delay={i * 110}>
-                <article className="group flex h-full flex-col rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-4 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_44px_-28px_rgba(23,61,43,0.4)]">
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white transition duration-300 hover:-translate-y-1.5 hover:border-[#4F7942]/40 hover:shadow-[0_24px_44px_-28px_rgba(28,40,24,0.25)]">
                   <div className="relative">
-                    <ProductImage src={product.image} label={product.name} />
-                    <span
-                      className="absolute left-0 top-3 bg-[#173d2b] py-1 pl-3 pr-4 text-[11px] font-semibold text-white shadow-sm"
-                      style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 0% 100%)" }}
-                    >
+                    <div className="relative h-56 w-full overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                    </div>
+                    <span className="absolute left-4 top-4 rounded-full bg-black/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white backdrop-blur-sm">
                       {product.category}
                     </span>
+                    <div className="absolute inset-x-4 bottom-4">
+                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.16em] text-[#8FCB74]`}>
+                        {rankLabels[i] ?? `Produk No. ${i + 1}`}
+                      </p>
+                      <h3 className={`${display.className} mt-1 text-xl font-semibold text-white`}>
+                        {product.name}
+                      </h3>
+                    </div>
                   </div>
-                  <h3 className={`${display.className} mt-4 text-base font-semibold text-[#173d2b]`}>
-                    {product.name}
-                  </h3>
-                  <p className="mt-1 text-sm font-medium text-[#173d2b]/70">{product.owner}</p>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-[#5B6B5E]">
-                    {product.description}
-                  </p>
-                  <div className="mt-4 flex items-center justify-between border-t border-dashed border-[#D9D2B8] pt-3">
-                    <p className={`${ledger.className} text-sm font-medium text-[#173d2b]`}>
-                      Rp {idrCurrency.format(product.price)}
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-sm font-medium text-[#5B6355]">{product.owner}</p>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-[#5B6355]">
+                      {product.description}
                     </p>
-                    <Link
-                      className="inline-flex items-center gap-1 rounded-full border border-[#173d2b] px-3 py-1 text-xs font-semibold text-[#173d2b] transition group-hover:bg-[#173d2b] group-hover:text-white"
-                      href={`/umkm/${product.slug}`}
-                    >
-                      Lihat Detail
-                    </Link>
+                    <div className="mt-4 flex items-center justify-between border-t border-dashed border-black/10 pt-3">
+                      <p className={`${ledger.className} text-sm font-medium text-[#1C2818]`}>
+                        Rp {idrCurrency.format(product.price)}
+                      </p>
+                      <Link
+                        className="inline-flex items-center gap-1 rounded-full border border-black/15 px-3 py-1 text-xs font-semibold text-[#1C2818] transition group-hover:border-[#4F7942] group-hover:bg-[#4F7942] group-hover:text-white"
+                        href={`/umkm/${product.slug}`}
+                      >
+                        Lihat Detail
+                      </Link>
+                    </div>
                   </div>
                 </article>
               </Reveal>
@@ -709,7 +937,7 @@ export default function Home() {
           </div>
           <Reveal className="text-center">
             <a
-              className="inline-flex rounded-full bg-[#173d2b]/90 px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#0f2a1d]"
+              className="inline-flex rounded-full bg-[#4F7942] px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#3D5F34]"
               href="#kontak"
             >
               Jelajahi Produk Lain
@@ -717,48 +945,9 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* -------------------------------- Kontak -------------------------- */}
-        <section id="kontak" aria-labelledby="contact-title" className="scroll-mt-24">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#0f2a1d] bg-[linear-gradient(120deg,#0f2a1d_0%,#173d2b_65%,#245239_100%)] p-6 text-white shadow-[0_20px_45px_-24px_rgba(15,42,29,0.85)] sm:p-8 md:p-10">
-              <WaveMotif
-                id="contact-motif"
-                className="pointer-events-none absolute inset-0 h-full w-full"
-                color="#f3f2cb"
-                opacity={0.08}
-              />
-              <div className="relative z-10">
-                <h2
-                  id="contact-title"
-                  className={`${display.className} text-center text-2xl font-semibold sm:text-3xl`}
-                >
-                  Tetap Terhubung dengan Kami
-                </h2>
-                <p className="mt-3 text-center text-sm text-white/80">
-                  Bagikan aspirasi, kebutuhan layanan, atau kolaborasi kegiatan
-                  dusun.
-                </p>
-                <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a
-                    className="rounded-full bg-[#f3f2cb] px-5 py-2.5 text-sm font-semibold text-[#173d2b] transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(23,61,43,0.45)]"
-                    href="mailto:dusunganjuran@example.id"
-                  >
-                    Email Aparat Dusun
-                  </a>
-                  <a
-                    className="rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
-                    href="https://wa.me/620000000000"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    WhatsApp Layanan
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </section>
-      </main>
+        
+        </main>
+      </div>
 
       <Footer />
     </div>
