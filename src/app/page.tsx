@@ -139,9 +139,9 @@ type GalleryImage = {
 
 const galleryImages: GalleryImage[] = [
   { src: "/galeri.webp", alt: "Lanskap Dusun Ganjuran", caption: "Lanskap Dusun" },
-  { src: "/galeri2.jpg", alt: "Suasana warga Ganjuran", caption: "Kerja Bakti" },
+  { src: "/kerja_bakti.webp", alt: "Suasana warga Ganjuran", caption: "Kerja Bakti" },
   { src: "/senam.webp", alt: "Peta wilayah Dusun Ganjuran", caption: "Senam" },
-  { src: "/galeri2.jpg", alt: "Sudut Dusun Ganjuran", caption: "Sudut Dusun" },
+  { src: "/gal.webp", alt: "Sudut Dusun Ganjuran", caption: "Sudut Dusun" },
 ];
 
 const featuredProducts = umkmProducts.slice(0, 3);
