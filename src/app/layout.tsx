@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Dusun Ganjuran",
   description: "Dusun Ganjuran, Desa Plosogede, Kec Ngluwar, Kab Magelang",
+  other: {
+    "google-site-verification": "Q9kskgDVkAPNjTMlyCNYFSaesfQlS6mt9ai0vJ66_hg",
+  },
 };
 
 export default function RootLayout({

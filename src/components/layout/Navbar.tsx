@@ -50,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed left-1/2 top-0 z-[9999] w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2 rounded-2xl border border-white/15 bg-[#0d2a1a]/50 px-4 py-3 text-white shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 sm:top-4 sm:rounded-full sm:px-6 sm:py-3.5">
+      <nav className="fixed left-1/2 top-0 z-[9999] w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2 rounded-2xl border border-white/15 bg-[#173d2b]/60 px-4 py-3 text-white shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 sm:top-4 sm:rounded-full sm:px-6 sm:py-3.5">
         {/* Highlight tipis di tepi atas, aksen kaca */}
         <div
           aria-hidden
@@ -118,9 +118,9 @@ export default function Navbar() {
         aria-hidden
       />
 
-      {/* Panel menu mobile — slide dari kanan, kaca gelap */}
+      {/* Panel menu mobile — slide dari kanan, kaca netral */}
       <div
-        className={`fixed inset-y-0 right-0 z-[9998] flex w-[78%] max-w-xs flex-col border-l border-white/15 bg-[#0d2a1a]/80 shadow-[-8px_0_32px_rgba(0,0,0,0.35)] backdrop-blur-2xl backdrop-saturate-150 transition-transform duration-300 ease-out sm:hidden ${
+        className={`fixed inset-y-0 right-0 z-[9998] flex w-[78%] max-w-xs flex-col border-l border-white/15 bg-[#173d2b]/90 shadow-[-8px_0_32px_rgba(0,0,0,0.35)] backdrop-blur-2xl backdrop-saturate-150 transition-transform duration-300 ease-out sm:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

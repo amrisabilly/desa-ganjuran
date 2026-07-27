@@ -72,7 +72,7 @@ const villageRoles: VillageRole[] = [
 const quickStats: QuickStat[] = [
   { label: "Kepala Keluarga", value: "312" },
   { label: "RT Aktif", value: "6" },
-  { label: "Pelaku UMKM", value: "6" },
+  { label: "Pelaku UMKM", value: "4" },
   { label: "Luas Wilayah", value: "15 Ha" },
 ];
 
@@ -315,10 +315,10 @@ function SectionHeading({
 }) {
   return (
     <div className="mx-auto max-w-2xl space-y-3 text-center">
-      <p className={`${display.className} text-xs italic tracking-[0.2em] text-[#B97F27]`}>
+      <p className={`${display.className} text-xs italic tracking-[0.2em] text-[#173d2b]`}>
         {eyebrow}
       </p>
-      <h2 className={`${display.className} text-2xl font-semibold text-[#1B3A28] sm:text-3xl`}>
+      <h2 className={`${display.className} text-2xl font-semibold text-[#173d2b] sm:text-3xl`}>
         {title}
       </h2>
       {caption ? (
@@ -349,7 +349,7 @@ export default function Home() {
 
   return (
     <div
-      className={`${display.variable} ${body.variable} ${ledger.variable} min-h-screen bg-[#EFEAD9] font-[var(--font-body)] text-[#182A1E]`}
+      className={`${display.variable} ${body.variable} ${ledger.variable} min-h-screen bg-[#EFEAD9] font-[var(--font-body)] text-[#173d2b]`}
     >
       <style jsx global>{`
         @keyframes motif-drift {
@@ -365,7 +365,7 @@ export default function Home() {
       <Navbar />
 
       {/* ------------------------------- Hero ---------------------------- */}
-      <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#0E1F15] px-4 pb-28 pt-4 text-white sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-32">
+      <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#173d2b] px-4 pb-28 pt-4 text-white sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-32">
         <Image
           src="/bg3.webp"
           alt="Lanskap Dusun Ganjuran"
@@ -374,14 +374,8 @@ export default function Home() {
           sizes="100vw"
           className="pointer-events-none absolute inset-0 object-cover object-center"
         />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,24,16,0.25)_0%,rgba(23,50,34,0.35)_50%,rgba(10,20,13,0.55)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,24,16,0.25)_0%,rgba(23,61,43,0.35)_50%,rgba(10,20,13,0.55)_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A140D]/70 via-[#0A140D]/10 to-transparent" />
-        {/* <WaveMotif
-          id="hero-motif"
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          color="#DFA23A"
-          opacity={0.07}
-        /> */}
         {/* fine grain for depth, kept extremely subtle */}
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden="true">
           <filter id="grain">
@@ -389,7 +383,7 @@ export default function Home() {
           </filter>
           <rect width="100%" height="100%" filter="url(#grain)" />
         </svg>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(223,162,58,0.1),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(243,242,203,0.12),transparent_45%)]" />
 
         <section
           id="profil"
@@ -397,7 +391,7 @@ export default function Home() {
         >
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
-              <span className="h-1 w-1 rounded-full bg-[#DFA23A]" />
+              <span className="h-1 w-1 rounded-full bg-[#f3f2cb]" />
               Kecamatan Ngluwar &middot; Magelang
             </p>
           </Reveal>
@@ -410,7 +404,7 @@ export default function Home() {
             <WordReveal
               text="Dusun Ganjuran"
               baseDelay={140}
-              className="italic text-[#E7C777]"
+              className="italic text-[#f3f2cb]"
             />
           </h1>
 
@@ -424,7 +418,7 @@ export default function Home() {
           <Reveal delay={520}>
             <div className="mt-9 flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a
-                className="group relative w-full overflow-hidden rounded-full bg-[#DFA23A] px-6 py-2.5 text-center text-sm font-semibold text-[#12271A] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(223,162,58,0.55)] sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-full bg-[#f3f2cb] px-6 py-2.5 text-center text-sm font-semibold text-[#173d2b] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(23,61,43,0.45)] sm:w-auto"
                 href="#peta"
               >
                 <span className="relative z-10">Lihat Peta</span>
@@ -482,12 +476,12 @@ export default function Home() {
           <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
             {villageRoles.map((role, i) => (
               <Reveal key={role.title} delay={i * 120}>
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition duration-300 hover:-translate-y-1 hover:border-[#DFA23A]/50 hover:shadow-[0_20px_40px_-24px_rgba(27,58,40,0.35)]">
-                  <span className="absolute right-0 top-0 h-14 w-14 -translate-y-7 translate-x-7 rotate-45 bg-[#DFA23A]/90 transition group-hover:bg-[#DFA23A]" />
-                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#B97F27]`}>
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition duration-300 hover:-translate-y-1 hover:border-[#173d2b]/50 hover:shadow-[0_20px_40px_-24px_rgba(23,61,43,0.35)]">
+                  <span className="absolute right-0 top-0 h-14 w-14 -translate-y-7 translate-x-7 rotate-45 bg-[#173d2b]/90 transition group-hover:bg-[#173d2b]" />
+                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
                     {role.title}
                   </p>
-                  <h3 className={`${display.className} mt-2 text-xl font-semibold text-[#1B3A28]`}>
+                  <h3 className={`${display.className} mt-2 text-xl font-semibold text-[#173d2b]`}>
                     {role.name}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[#5B6B5E]">
@@ -496,7 +490,7 @@ export default function Home() {
                   <div className="mt-4 flex items-center justify-between border-t border-dashed border-[#D9D2B8] pt-3">
                     <span className={`${ledger.className} text-[11px] text-[#7C8A7E]`}>{role.since}</span>
                     <a
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#1B3A28] transition group-hover:gap-1.5 group-hover:text-[#B97F27]"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#173d2b] transition group-hover:gap-1.5 group-hover:text-[#0f2a1d]"
                       href="#kontak"
                     >
                       Hubungi <span aria-hidden="true">&rarr;</span>
@@ -520,11 +514,11 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_25px_70px_-45px_rgba(21,45,33,0.55)] lg:p-8">
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#D9D2B8] bg-[#F7F4E9] p-6 shadow-[0_25px_70px_-45px_rgba(23,61,43,0.55)] lg:p-8">
               <div className="grid gap-6 lg:grid-cols-[0.95fr_1fr] lg:items-stretch">
-                <div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-[#12271A] shadow-[0_30px_60px_-30px_rgba(12,38,24,0.7)]">
+                <div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-[#173d2b] shadow-[0_30px_60px_-30px_rgba(15,42,29,0.7)]">
                   <Image
-                    src="/bg2.jpg"
+                    src="/bg2.jpg"  
                     alt="Sejarah Dusun Ganjuran"
                     fill
                     sizes="(min-width: 1024px) 45vw, 100vw"
@@ -532,7 +526,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                   <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
-                    <p className={`${ledger.className} text-[11px] uppercase tracking-[0.2em] text-[#E7C777]`}>
+                    <p className={`${ledger.className} text-[11px] uppercase tracking-[0.2em] text-[#f3f2cb]`}>
                       Warisan Budaya
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-white/90">
@@ -552,10 +546,10 @@ export default function Home() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-2xl bg-[#EFEAD9] p-4">
-                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#B97F27]`}>
+                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
                         Tahun Berdiri
                       </p>
-                      <p className={`${display.className} mt-2 text-3xl font-semibold text-[#1B3A28]`}>
+                      <p className={`${display.className} mt-2 text-3xl font-semibold text-[#173d2b]`}>
                         1924
                       </p>
                       <p className="mt-1 text-xs text-[#7C8A7E]">
@@ -563,10 +557,10 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="rounded-2xl bg-[#EFEAD9] p-4">
-                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#B97F27]`}>
+                      <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
                         Nilai Utama
                       </p>
-                      <p className={`${display.className} mt-2 text-2xl font-semibold text-[#1B3A28]`}>
+                      <p className={`${display.className} mt-2 text-2xl font-semibold text-[#173d2b]`}>
                         Gotong Royong
                       </p>
                       <p className="mt-1 text-xs text-[#7C8A7E]">
@@ -579,11 +573,11 @@ export default function Home() {
                     {historyPoints.map((point, idx) => (
                       <div key={point.title} className="relative">
                         <span
-                          className={`${ledger.className} absolute -left-[26px] top-0.5 flex h-5 w-5 items-center justify-center rounded-sm bg-[#1B3A28] text-[10px] font-medium text-[#E7C777]`}
+                          className={`${ledger.className} absolute -left-[26px] top-0.5 flex h-5 w-5 items-center justify-center rounded-sm bg-[#173d2b] text-[10px] font-medium text-[#f3f2cb]`}
                         >
                           {idx + 1}
                         </span>
-                        <h3 className="text-base font-semibold text-[#1B3A28]">{point.title}</h3>
+                        <h3 className="text-base font-semibold text-[#173d2b]">{point.title}</h3>
                         <p className="mt-1.5 text-sm leading-relaxed text-[#5B6B5E]">
                           {point.description}
                         </p>
@@ -628,7 +622,7 @@ export default function Home() {
                       </p>
                     </div>
                     <a
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#DFA23A] px-4 py-2 text-xs font-semibold text-[#12271A] shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(223,162,58,0.6)]"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#f3f2cb] px-4 py-2 text-xs font-semibold text-[#173d2b] shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(23,61,43,0.45)]"
                       href="https://maps.app.goo.gl/o3215mKgHBZuEE4F7"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -643,7 +637,7 @@ export default function Home() {
             <Reveal delay={200}>
               <div className="flex h-full flex-col justify-between gap-5 rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-6">
                 <div>
-                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#B97F27]`}>
+                  <p className={`${ledger.className} text-[11px] uppercase tracking-[0.14em] text-[#173d2b]`}>
                     Sekilas Wilayah
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-[#5B6B5E]">
@@ -654,7 +648,7 @@ export default function Home() {
                 <dl className="grid grid-cols-2 gap-3">
                   {quickStats.map((stat) => (
                     <div key={stat.label} className="rounded-xl bg-[#EFEAD9] px-3 py-2.5 text-center">
-                      <dd className={`${ledger.className} text-lg font-medium text-[#1B3A28]`}>
+                      <dd className={`${ledger.className} text-lg font-medium text-[#173d2b]`}>
                         {stat.value}
                       </dd>
                       <dt className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#7C8A7E]">
@@ -681,29 +675,29 @@ export default function Home() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {featuredProducts.map((product, i) => (
               <Reveal key={product.name} delay={i * 110}>
-                <article className="group flex h-full flex-col rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-4 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_44px_-28px_rgba(27,58,40,0.4)]">
+                <article className="group flex h-full flex-col rounded-2xl border border-[#D9D2B8] bg-[#F7F4E9] p-4 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_44px_-28px_rgba(23,61,43,0.4)]">
                   <div className="relative">
                     <ProductImage src={product.image} label={product.name} />
                     <span
-                      className="absolute left-0 top-3 bg-[#1B3A28] py-1 pl-3 pr-4 text-[11px] font-semibold text-white shadow-sm"
+                      className="absolute left-0 top-3 bg-[#173d2b] py-1 pl-3 pr-4 text-[11px] font-semibold text-white shadow-sm"
                       style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 0% 100%)" }}
                     >
                       {product.category}
                     </span>
                   </div>
-                  <h3 className={`${display.className} mt-4 text-base font-semibold text-[#1B3A28]`}>
+                  <h3 className={`${display.className} mt-4 text-base font-semibold text-[#173d2b]`}>
                     {product.name}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-[#B97F27]">{product.owner}</p>
+                  <p className="mt-1 text-sm font-medium text-[#173d2b]/70">{product.owner}</p>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-[#5B6B5E]">
                     {product.description}
                   </p>
                   <div className="mt-4 flex items-center justify-between border-t border-dashed border-[#D9D2B8] pt-3">
-                    <p className={`${ledger.className} text-sm font-medium text-[#1B3A28]`}>
+                    <p className={`${ledger.className} text-sm font-medium text-[#173d2b]`}>
                       Rp {idrCurrency.format(product.price)}
                     </p>
                     <Link
-                      className="inline-flex items-center gap-1 rounded-full border border-[#1B3A28] px-3 py-1 text-xs font-semibold text-[#1B3A28] transition group-hover:bg-[#1B3A28] group-hover:text-white"
+                      className="inline-flex items-center gap-1 rounded-full border border-[#173d2b] px-3 py-1 text-xs font-semibold text-[#173d2b] transition group-hover:bg-[#173d2b] group-hover:text-white"
                       href={`/umkm/${product.slug}`}
                     >
                       Lihat Detail
@@ -715,7 +709,7 @@ export default function Home() {
           </div>
           <Reveal className="text-center">
             <a
-              className="inline-flex rounded-full bg-[#1B3A28] px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#12271A]"
+              className="inline-flex rounded-full bg-[#173d2b]/90 px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#0f2a1d]"
               href="#kontak"
             >
               Jelajahi Produk Lain
@@ -726,11 +720,11 @@ export default function Home() {
         {/* -------------------------------- Kontak -------------------------- */}
         <section id="kontak" aria-labelledby="contact-title" className="scroll-mt-24">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#123321] bg-[linear-gradient(120deg,#12271A_0%,#1B3A28_65%,#234A34_100%)] p-6 text-white shadow-[0_20px_45px_-24px_rgba(18,40,29,0.85)] sm:p-8 md:p-10">
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#0f2a1d] bg-[linear-gradient(120deg,#0f2a1d_0%,#173d2b_65%,#245239_100%)] p-6 text-white shadow-[0_20px_45px_-24px_rgba(15,42,29,0.85)] sm:p-8 md:p-10">
               <WaveMotif
                 id="contact-motif"
                 className="pointer-events-none absolute inset-0 h-full w-full"
-                color="#DFA23A"
+                color="#f3f2cb"
                 opacity={0.08}
               />
               <div className="relative z-10">
@@ -746,7 +740,7 @@ export default function Home() {
                 </p>
                 <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <a
-                    className="rounded-full bg-[#DFA23A] px-5 py-2.5 text-sm font-semibold text-[#12271A] transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(223,162,58,0.6)]"
+                    className="rounded-full bg-[#f3f2cb] px-5 py-2.5 text-sm font-semibold text-[#173d2b] transition hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-8px_rgba(23,61,43,0.45)]"
                     href="mailto:dusunganjuran@example.id"
                   >
                     Email Aparat Dusun
