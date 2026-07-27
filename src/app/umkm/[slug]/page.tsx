@@ -93,14 +93,7 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
 
               <div className="mt-2 flex flex-wrap items-center gap-2.5">
                 <p className="text-2xl font-bold text-[#214f36]">{toRupiah(product.price)}</p>
-                {product.oldPrice ? (
-                  <p className="text-sm text-[#7d7b72] line-through">{toRupiah(product.oldPrice)}</p>
-                ) : null}
-                {product.discountLabel ? (
-                  <span className="rounded-full bg-[#d6e8c9] px-2 py-0.5 text-xs font-semibold text-[#3d643e]">
-                    {product.discountLabel}
-                  </span>
-                ) : null}
+                
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-[#4f6052]">
