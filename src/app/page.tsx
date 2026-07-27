@@ -131,6 +131,19 @@ const heroFacts = [
   },
 ];
 
+type GalleryImage = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+const galleryImages: GalleryImage[] = [
+  { src: "/galeri.webp", alt: "Lanskap Dusun Ganjuran", caption: "Lanskap Dusun" },
+  { src: "/galeri2.jpg", alt: "Suasana warga Ganjuran", caption: "Kerja Bakti" },
+  { src: "/senam.webp", alt: "Peta wilayah Dusun Ganjuran", caption: "Senam" },
+  { src: "/galeri2.jpg", alt: "Sudut Dusun Ganjuran", caption: "Sudut Dusun" },
+];
+
 const featuredProducts = umkmProducts.slice(0, 3);
 const rankLabels = ["Produk No. 01", "Produk No. 02", "Produk No. 03"];
 
@@ -436,6 +449,7 @@ function ProductImage({ src, label }: { src: string; label: string }) {
 export default function Home() {
   const idrCurrency = new Intl.NumberFormat("id-ID");
   const [activeSection, setActiveSection] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <div
@@ -457,15 +471,16 @@ export default function Home() {
       {/* ------------------------------- Hero ---------------------------- */}
       <header className="relative isolate flex min-h-screen flex-col overflow-hidden bg-black px-4 pb-28 pt-4 text-white sm:px-8 sm:pb-32 sm:pt-6 lg:px-12 lg:pb-32">
         <Image
-          src="/bg3.webp"
+          src="/bg3_bright.webp"
           alt="Lanskap Dusun Ganjuran"
           fill
           priority
           sizes="100vw"
           className="pointer-events-none absolute inset-0 object-cover object-center"
         />
-        {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" /> */}
-        {/* fine grain for depth, kept extremely subtle */}
+<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(11,11,11,0.55)_0%,rgba(11,11,11,0.75)_50%,rgba(10,20,13,0.92)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(79,121,66,0.14),transparent_45%)]" />
+
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.06]" aria-hidden="true">
           <filter id="grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
@@ -508,7 +523,7 @@ export default function Home() {
           </Reveal>
 
           <h1
-            className={`${display.className} mt-6 text-balance text-5xl font-semibold uppercase leading-[0.95] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)] sm:text-7xl lg:text-8xl`}
+            className={`${display.className} mt-6 text-balance text-5xl font-semibold uppercase leading-[0.95] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)] sm:text-7xl lg:text-7xl`}
           >
             <WordReveal text="Portal Digital" />
             <br />
@@ -576,50 +591,123 @@ export default function Home() {
         <WaveDivider fill="#FFFFFF" />
       </header>
 
+      
       <div className="relative">
         <AmbientBackground />
         <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 pb-24 pt-16 sm:px-8 sm:pt-20 lg:px-10 lg:pt-24">
-        {/* ------------------------ Sorotan Dusun (ranked grid) ------------ */}
-        <section id="sorotan" aria-labelledby="sorotan-title" className="scroll-mt-24 space-y-8">
-          <Reveal>
-            <div id="sorotan-title" className="mx-auto max-w-2xl space-y-3 text-center">
-              <p className="text-sm text-[#6E7566]">Bingung mulai dari mana? Ini sorotan kami</p>
-              <h2 className={`${display.className} text-2xl font-semibold uppercase tracking-tight text-[#1C2818] sm:text-3xl`}>
-                Sorotan Dusun Ganjuran
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
-            {highlightProducts.map((product, i) => (
-              <Reveal key={product.name} delay={i * 90}>
-                <Link href={`/umkm/${product.slug}`} className="group block">
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-black/10">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(min-width: 1024px) 22vw, 45vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  </div>
-                  <p className={`${display.className} mt-3 text-base font-semibold text-[#1C2818]`}>
-                    {highlightLabels[i] ?? `Favorit #${i + 1}`}
-                  </p>
-                  <p className="text-xs text-[#6E7566]">{product.name}</p>
-                </Link>
-              </Reveal>
-            ))}
+        {/* ------------------------ Sorotan Dusun (galeri foto) ------------ */}
+      <section id="sorotan" aria-labelledby="sorotan-title" className="scroll-mt-24 space-y-8">
+        <Reveal>
+          <div id="sorotan-title" className="mx-auto max-w-2xl space-y-3 text-center">
+            <p className="text-sm text-[#6E7566]">Sekilas suasana dusun kami</p>
+            <h2 className={`${display.className} text-2xl font-semibold uppercase tracking-tight text-[#1C2818] sm:text-3xl`}>
+              Sorotan Dusun Ganjuran
+            </h2>
           </div>
+        </Reveal>
 
-          <Reveal>
-            <div className="flex items-center gap-4 pt-2">
-              <span className="h-px w-24 bg-[#4F7942]" />
-              <span className="h-px flex-1 bg-black/10" />
-            </div>
-          </Reveal>
-        </section>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+          {galleryImages.map((img, i) => (
+            <Reveal key={img.src + i} delay={i * 90}>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                className="group block w-full text-left"
+              >
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-black/10">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 45vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition group-hover:opacity-100">
+                    <span className="rounded-full border border-white/70 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                      Lihat
+                    </span>
+                  </span>
+                </div>
+                <p className={`${display.className} mt-3 text-base font-semibold text-[#1C2818]`}>
+                  {img.caption}
+                </p>
+              </button>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal>
+          <div className="flex items-center gap-4 pt-2">
+            <span className="h-px w-24 bg-[#4F7942]" />
+            <span className="h-px flex-1 bg-black/10" />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Lightbox overlay */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxIndex(null)}
+            className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition hover:border-white hover:bg-white/10"
+            aria-label="Tutup"
+          >
+            &times;
+          </button>
+
+          {galleryImages.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex((prev) =>
+                    prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length
+                  );
+                }}
+                className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 text-white transition hover:border-white hover:bg-white/10 sm:left-6"
+                aria-label="Sebelumnya"
+              >
+                &lsaquo;
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex((prev) =>
+                    prev === null ? null : (prev + 1) % galleryImages.length
+                  );
+                }}
+                className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 text-white transition hover:border-white hover:bg-white/10 sm:right-6"
+                aria-label="Berikutnya"
+              >
+                &rsaquo;
+              </button>
+            </>
+          )}
+
+          <div
+            className="relative aspect-[4/3] w-full max-w-2xl overflow-hidden rounded-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={galleryImages[lightboxIndex].src}
+              alt={galleryImages[lightboxIndex].alt}
+              fill
+              sizes="(min-width: 1024px) 50vw, 90vw"
+              className="object-cover"
+            />
+          </div>
+          <p className="absolute bottom-6 text-sm text-white/80">
+            {galleryImages[lightboxIndex].caption}
+          </p>
+        </div>
+      )}
 
         {/* --------------------- Jelajahi & Nikmati (CTA panel) ------------ */}
         <section id="jelajahi" aria-labelledby="jelajahi-title" className="scroll-mt-24">
@@ -699,111 +787,7 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* ------------------------------ Profil Desa ----------------------- */}
-        <section id="profil-desa" aria-labelledby="profil-desa-title" className="scroll-mt-24 space-y-8">
-          <Reveal>
-            <div id="profil-desa-title">
-              <SectionHeading
-                eyebrow="Tentang Kami"
-                title="Mengenal Dusun Ganjuran"
-                caption="Perjalanan, nilai, dan orang-orang yang menjaga denyut kehidupan Dusun Ganjuran tetap hidup dari generasi ke generasi."
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_25px_70px_-45px_rgba(28,40,24,0.25)]">
-              <div className="grid lg:grid-cols-[1fr_1.15fr]">
-                {/* Image column: founding-year badge + pull-quote */}
-                <div className="relative min-h-[320px] overflow-hidden lg:min-h-full">
-                  <Image
-                    src="/bg2.jpg"
-                    alt="Suasana Dusun Ganjuran"
-                    fill
-                    sizes="(min-width: 1024px) 45vw, 100vw"
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/10" />
-
-                  <div className="absolute left-5 top-5 rounded-2xl border border-white/15 bg-black/50 px-4 py-3 backdrop-blur-md">
-                    <p className={`${ledger.className} text-[10px] uppercase tracking-[0.2em] text-[#8FCB74]`}>
-                      Berdiri Sejak
-                    </p>
-                    <p className={`${display.className} mt-1 text-3xl font-semibold text-white`}>1924</p>
-                  </div>
-
-                  <div className="absolute inset-x-5 bottom-5">
-                    <p className={`${display.className} text-lg italic leading-snug text-white sm:text-xl`}>
-                      &ldquo;Gotong royong adalah napas dusun kami.&rdquo;
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/50">Nilai Utama Warga</p>
-                  </div>
-                </div>
-
-                {/* Text column: narrative, history highlights, leadership chips */}
-                <div className="flex flex-col justify-between gap-8 p-6 sm:p-10">
-                  <div className="space-y-4">
-                    <p className="text-sm leading-relaxed text-[#5B6355] sm:text-[15px]">
-                      Dusun Ganjuran lahir dari kearifan lokal dan semangat
-                      gotong royong. Nama Ganjuran tumbuh dari cerita lokal
-                      dan lingkungan pertanian yang hangat, tempat masyarakat
-                      berkumpul untuk berbagi hasil panen — sebuah fondasi
-                      yang terus dirawat hingga hari ini melalui budaya dan
-                      cerita generasi.
-                    </p>
-
-                    <div className="grid gap-4 border-l-2 border-dashed border-black/10 pl-5 sm:grid-cols-2 sm:border-l-0 sm:pl-0">
-                      {historyPoints.map((point, idx) => (
-                        <div key={point.title} className="relative sm:pl-6">
-                          <span
-                            className={`${ledger.className} absolute -left-[26px] top-0.5 flex h-5 w-5 items-center justify-center rounded-sm bg-[#4F7942] text-[10px] font-medium text-white sm:left-0`}
-                          >
-                            {idx + 1}
-                          </span>
-                          <h3 className="text-sm font-semibold text-[#1C2818]">{point.title}</h3>
-                          <p className="mt-1.5 text-xs leading-relaxed text-[#5B6355]">
-                            {point.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Leadership, folded in as compact contact chips rather than a separate section */}
-                  <div className="border-t border-dashed border-black/10 pt-6">
-                    <p className={`${ledger.className} mb-3 text-[11px] uppercase tracking-[0.18em] text-[#4F7942]`}>
-                      Perangkat &amp; Penggerak Dusun
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      {villageRoles.map((role) => (
-                        <a
-                          key={role.name}
-                          href="#kontak"
-                          className="group flex items-center gap-3 rounded-full border border-black/10 bg-[#F3F5EE] py-2 pl-2 pr-4 transition hover:-translate-y-0.5 hover:border-[#4F7942]/50"
-                        >
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#4F7942] text-xs font-semibold text-white">
-                            {role.name
-                              .split(" ")
-                              .map((w) => w[0])
-                              .slice(0, 2)
-                              .join("")
-                              .toUpperCase()}
-                          </span>
-                          <span>
-                            <p className="text-[11px] uppercase tracking-[0.08em] text-[#6E7566]">{role.title}</p>
-                            <p className="text-sm font-semibold text-[#1C2818] transition group-hover:text-[#4F7942]">
-                              {role.name}
-                            </p>
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </section>
+        
 
         {/* ---------------------------------- Peta ------------------------- */}
         <section id="peta" aria-labelledby="map-title" className="scroll-mt-24 space-y-8">

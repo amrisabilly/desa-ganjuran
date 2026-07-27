@@ -6,6 +6,7 @@ export type UmkmProduct = {
   description: string;
   accent: string;
   image: string;
+  photos: string[];
   price: number;
   oldPrice?: number;
   discountLabel?: string;
@@ -23,6 +24,12 @@ export const umkmProducts: UmkmProduct[] = [
     accent:
       "radial-gradient(circle at 20% 20%, #f6e8b6 0%, #c89d5c 35%, #7a5a2c 100%)",
     image: "/umkm/slondok-bu-nuryani.svg",
+    photos: [
+      "/umkm/slondok-bu-nuryani.svg",
+      "/bg2.jpg",
+      "/bg3.jpg",
+      "/galeri2.jpg",
+    ],
     price: 45000,
     oldPrice: 60000,
     discountLabel: "25%",
@@ -30,14 +37,21 @@ export const umkmProducts: UmkmProduct[] = [
     features: ["100% Alami", "Ramah Lingkungan", "Produksi Lokal"],
   },
   {
-    slug: "gula-jawa-organik",
-    name: "Gula Jawa Organik",
+    slug: "slondok-sb",
+    name: "Slondok SB",
     owner: "Ibu Maryati",
     category: "Makanan & Minuman",
-    description: "Gula jawa murni dari nira kelapa tanpa campuran bahan kimia.",
+    description: "Slondok terbuat dari singkong",
     accent:
       "radial-gradient(circle at 25% 25%, #f4cf7f 0%, #b36c2b 45%, #4b2f1b 100%)",
-    image: "/umkm/gula-jawa-organik.svg",
+    image: "/slondok_sb/1.webp",
+    photos: [
+      "/slondok_sb/1.webp",
+      "/slondok_sb/2.webp",
+      "/slondok_sb/3.webp",
+      "/slondok_sb/4.webp",
+      "/slondok_sb/5.webp",
+    ],
     price: 25000,
     oldPrice: 30000,
     discountLabel: "20%",
@@ -53,6 +67,12 @@ export const umkmProducts: UmkmProduct[] = [
     accent:
       "radial-gradient(circle at 30% 20%, #d2b28c 0%, #7a5337 45%, #2f2017 100%)",
     image: "/umkm/kopi-robusta-ganjuran.svg",
+    photos: [
+      "/umkm/kopi-robusta-ganjuran.svg",
+      "/bg2.jpg",
+      "/bg3.jpg",
+      "/galeri.webp",
+    ],
     price: 65000,
     oldPrice: 75000,
     discountLabel: "13%",
@@ -68,6 +88,12 @@ export const umkmProducts: UmkmProduct[] = [
     accent:
       "radial-gradient(circle at 30% 20%, #9ac5b0 0%, #456f5a 45%, #243f34 100%)",
     image: "/umkm/batik-tulis-ganjuran.svg",
+    photos: [
+      "/umkm/batik-tulis-ganjuran.svg",
+      "/bg2.jpg",
+      "/bg3.jpg",
+      "/galeri2.jpg",
+    ],
     price: 350000,
     oldPrice: 400000,
     discountLabel: "12%",

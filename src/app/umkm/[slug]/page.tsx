@@ -77,10 +77,14 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
                 <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
               </div>
 
-              <div className="mt-3 grid grid-cols-3 gap-3">
-                <ProductTile src={product.image} label={`${product.name} tampilan utama`} />
-                <ProductTile src={product.image} label={`${product.name} tampilan kedua`} />
-                <ProductTile src={product.image} label={`${product.name} tampilan ketiga`} />
+              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {product.photos.map((photo, index) => (
+                  <ProductTile
+                    key={`${product.slug}-photo-${index}`}
+                    src={photo}
+                    label={`${product.name} foto ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
 
@@ -155,9 +159,13 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
                   <Image src={item.image} alt={item.name} fill sizes="(min-width: 1024px) 20vw, 100vw" className="object-cover" />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-base font-semibold text-[#234530]">{item.name}</h3>
+                  <span className="inline-flex rounded-full bg-[#e8f3e6] px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#3a6240]">
+                    {item.category}
+                  </span>
+                  <h3 className="mt-3 text-base font-semibold text-[#234530]">{item.name}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#526354]">{item.description}</p>
-                  <p className="mt-3 text-sm font-bold text-[#1f573c]">{toRupiah(item.price)}</p>
+                  <p className="mt-3 text-sm font-semibold text-[#1f573c]">Pemilik: {item.owner}</p>
+                  <p className="text-sm font-bold text-[#1f573c]">{toRupiah(item.price)}</p>
                   <Link
                     href={`/umkm/${item.slug}`}
                     className="mt-3 inline-flex rounded-full border border-[#1f573c] px-3 py-1 text-xs font-semibold text-[#1f573c] transition hover:bg-[#1f573c] hover:text-white"
