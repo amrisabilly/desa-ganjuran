@@ -43,7 +43,7 @@ const teamMembers: TeamMember[] = [
     name: "MAULANA ASHIM",
     role: "Ketua Tim",
     tier: "inti",
-    image: "/kkn/ashim.jpg",
+    image: "/kkn/ashim.webp",
     description:
       "Memimpin tim, menetapkan strategi KKN, dan memastikan semua program berjalan selaras dengan tujuan desa.",
   },
@@ -51,7 +51,7 @@ const teamMembers: TeamMember[] = [
     name: "FEZAQINA RIVANAHESYA",
     role: "Wakil Ketua",
     tier: "inti",
-    image: "/kkn/feza.jpg",
+    image: "/kkn/feza.webp",
     description:
       "Mendukung ketua tim dalam koordinasi harian serta memastikan komunikasi internal berjalan lancar.",
   },
@@ -59,7 +59,7 @@ const teamMembers: TeamMember[] = [
     name: "FAHRU HANDIAN SUYUTI",
     role: "Humas",
     tier: "bidang",
-    image: "/kkn/fahru.jpg",
+    image: "/kkn/fahru.webp",
     description:
       "Mengelola komunikasi publik dan memperkuat hubungan tim KKN dengan warga serta pihak mitra.",
   },
@@ -67,7 +67,7 @@ const teamMembers: TeamMember[] = [
     name: "SHERYL INDRIA FEBRINA SETIAWAN",
     role: "Humas",
     tier: "bidang",
-    image: "/kkn/sheryl.jpg",
+    image: "/kkn/sheryl.webp",
     description:
       "Menjadi penghubung tim dengan komunitas lokal dan membantu menyebarkan informasi program secara efektif.",
   },
@@ -75,7 +75,7 @@ const teamMembers: TeamMember[] = [
     name: "DEVITA EKA PUTRY SITANGGANG",
     role: "Sekretaris",
     tier: "bidang",
-    image: "/kkn/devita.jpg",
+    image: "/kkn/devita.webp",
     description:
       "Mengelola administrasi tim, dokumentasi rapat, dan memastikan semua catatan program tersusun rapi.",
   },
@@ -83,7 +83,7 @@ const teamMembers: TeamMember[] = [
     name: "ARINTA WIDYAWARA ANTARINI",
     role: "PDD",
     tier: "bidang",
-    image: "/kkn/arinta.jpg",
+    image: "/kkn/arinta.webp",
     description:
       "Mendampingi warga dalam kegiatan pemberdayaan desa dan membantu pelaksanaan program pelatihan.",
   },
@@ -91,7 +91,7 @@ const teamMembers: TeamMember[] = [
     name: "FA ID RUSYAN KIMIANTORY",
     role: "PDD",
     tier: "bidang",
-    image: "/kkn/faid.jpg",
+    image: "/kkn/faid.webp",
     description:
       "Berfokus pada penguatan kapasitas masyarakat dan pendampingan program pemberdayaan.",
   },
@@ -99,7 +99,7 @@ const teamMembers: TeamMember[] = [
     name: "NOVITA HANDAYANI",
     role: "PDD",
     tier: "bidang",
-    image: "/kkn/novita.jpg",
+    image: "/kkn/novita.webp",
     description:
       "Mendukung kegiatan pemberdayaan dan memastikan warga mendapat dukungan yang tepat selama program.",
   },
@@ -107,7 +107,7 @@ const teamMembers: TeamMember[] = [
     name: "AMRI SABILLY",
     role: "Logistik",
     tier: "bidang",
-    image: "/kkn/billy.jpg",
+    image: "/kkn/billy.webp",
     description:
       "Mengatur kebutuhan logistik tim, mulai dari transportasi hingga peralatan kegiatan lapangan.",
   },
@@ -115,7 +115,7 @@ const teamMembers: TeamMember[] = [
     name: "HANIFAH JULIA SAPUTRI",
     role: "Logistik",
     tier: "bidang",
-    image: "/kkn/hani.jpg",
+    image: "/kkn/hani.webp",
     description:
       "Menangani persiapan perlengkapan kegiatan dan memastikan semua kebutuhan operasional tersedia.",
   },
