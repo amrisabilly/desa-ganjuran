@@ -83,7 +83,7 @@ const villageRoles: VillageRole[] = [
 ];
 
 const quickStats: QuickStat[] = [
-  { label: "Kepala Keluarga", value: "312" },
+  { label: "Kepala Keluarga", value: "250" },
   { label: "RT Aktif", value: "6" },
   { label: "Pelaku UMKM", value: "4" },
   { label: "Luas Wilayah", value: "15 Ha" },
@@ -899,7 +899,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <p className="text-sm font-medium text-[#5B6355]">{product.owner}</p>
+                    {/* <p className="text-sm font-medium text-[#5B6355]">{product.owner}</p> */}
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-[#5B6355]">
                       {product.description}
                     </p>

@@ -97,7 +97,7 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-[#4f6052]">
-                {product.name} diproduksi oleh {product.owner} menggunakan bahan baku pilihan
+                {product.name} diproduksi menggunakan bahan baku pilihan
                 dari warga sekitar. Produk ini menjaga cita rasa dan karakter lokal agar tetap
                 autentik untuk konsumsi keluarga sehari-hari.
               </p>
@@ -117,10 +117,7 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
                 ))}
               </div>
 
-              <div className="mt-4 rounded-2xl border border-[#dfd9cb] bg-[#efe9dc] p-3.5">
-                <p className="text-sm font-semibold text-[#264f37]">{product.owner}</p>
-                <p className="text-xs text-[#5a685c]">di {product.location}</p>
-              </div>
+              
 
               <a
                 href="https://wa.me/620000000000"
@@ -157,7 +154,7 @@ export default async function UmkmDetailPage({ params }: UmkmDetailPageProps) {
                   </span>
                   <h3 className="mt-3 text-base font-semibold text-[#234530]">{item.name}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#526354]">{item.description}</p>
-                  <p className="mt-3 text-sm font-semibold text-[#1f573c]">Pemilik: {item.owner}</p>
+                  {/* <p className="mt-3 text-sm font-semibold text-[#1f573c]">Pemilik: {item.owner}</p> */}
                   <p className="text-sm font-bold text-[#1f573c]">{toRupiah(item.price)}</p>
                   <Link
                     href={`/umkm/${item.slug}`}
